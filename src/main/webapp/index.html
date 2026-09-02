@@ -493,6 +493,8 @@
             max-width: 100%;
             object-fit: contain;
             transition: 0.4s;
+            background: #fff;
+            border-radius: 8px;
         }
         .product-card:hover .product-img img {
             transform: scale(1.04);
@@ -666,6 +668,7 @@
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
+            border-radius: 8px;
         }
         .modal-product-title {
             font-size: 1.8rem;
@@ -863,6 +866,7 @@
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
+            border-radius: 4px;
         }
         .cart-item-info {
             flex: 1;
@@ -1465,7 +1469,7 @@
     </div>
 
     <script>
-        // ── PRODUCT DATA with realistic image URLs from Unsplash (using specific search terms) ──
+        // ── PRODUCT DATA with picsum.photos seeds ──
         const products = [{
             id: 1,
             name: 'Studio Wireless Pro',
@@ -1474,7 +1478,7 @@
             originalPrice: 199,
             rating: 4.8,
             reviews: 124,
-            image: 'https://source.unsplash.com/400x400/?headphone',
+            image: 'https://picsum.photos/seed/headphone/400/400',
             desc: 'Premium noise‑cancelling headphones with 40h battery life, spatial audio, and ultra‑comfortable ear cups.'
         }, {
             id: 2,
@@ -1484,7 +1488,7 @@
             originalPrice: 1499,
             rating: 4.9,
             reviews: 89,
-            image: 'https://source.unsplash.com/400x400/?laptop',
+            image: 'https://picsum.photos/seed/laptop/400/400',
             desc: 'Lightweight powerhouse with 16GB RAM, 512GB SSD, stunning 4K display, and all‑day battery life.'
         }, {
             id: 3,
@@ -1494,7 +1498,7 @@
             originalPrice: 1050,
             rating: 4.7,
             reviews: 56,
-            image: 'https://source.unsplash.com/400x400/?camera',
+            image: 'https://picsum.photos/seed/camera/400/400',
             desc: '24MP mirrorless camera with 4K video, image stabilization, and professional‑grade autofocus.'
         }, {
             id: 4,
@@ -1504,7 +1508,7 @@
             originalPrice: 299,
             rating: 4.6,
             reviews: 203,
-            image: 'https://source.unsplash.com/400x400/?watch',
+            image: 'https://picsum.photos/seed/watch/400/400',
             desc: 'GPS, heart rate monitor, sleep tracking, and 7‑day battery life in a sleek titanium design.'
         }, {
             id: 5,
@@ -1514,7 +1518,7 @@
             originalPrice: 29,
             rating: 5.0,
             reviews: 312,
-            image: 'https://source.unsplash.com/400x400/?mug',
+            image: 'https://picsum.photos/seed/mug/400/400',
             desc: 'Handcrafted ceramic mug with a unique glaze, microwave and dishwasher safe.'
         }, {
             id: 6,
@@ -1524,7 +1528,7 @@
             originalPrice: 490,
             rating: 4.8,
             reviews: 78,
-            image: 'https://source.unsplash.com/400x400/?office-chair',
+            image: 'https://picsum.photos/seed/chair/400/400',
             desc: 'Adjustable office chair with lumbar support, breathable mesh back, and premium cushioning.'
         }, {
             id: 7,
@@ -1534,7 +1538,7 @@
             originalPrice: 99,
             rating: 4.5,
             reviews: 215,
-            image: 'https://source.unsplash.com/400x400/?earbuds',
+            image: 'https://picsum.photos/seed/earbuds/400/400',
             desc: 'True wireless earbuds with active noise cancellation, IPX5 waterproofing, and crystal‑clear calls.'
         }, {
             id: 8,
@@ -1544,7 +1548,7 @@
             originalPrice: 399,
             rating: 4.4,
             reviews: 134,
-            image: 'https://source.unsplash.com/400x400/?action-camera',
+            image: 'https://picsum.photos/seed/actioncam/400/400',
             desc: 'Waterproof action camera with 4K/60fps, image stabilization, and dual‑screen for vlogging.'
         }, {
             id: 9,
@@ -1554,7 +1558,7 @@
             originalPrice: 79,
             rating: 4.7,
             reviews: 98,
-            image: 'https://source.unsplash.com/400x400/?gaming-mouse',
+            image: 'https://picsum.photos/seed/gamingmouse/400/400',
             desc: 'Lightweight ergonomic gaming mouse with 16K DPI sensor and RGB lighting.'
         }, {
             id: 10,
@@ -1564,7 +1568,7 @@
             originalPrice: 119,
             rating: 4.6,
             reviews: 143,
-            image: 'https://source.unsplash.com/400x400/?keyboard',
+            image: 'https://picsum.photos/seed/keyboard/400/400',
             desc: 'Tactile mechanical keyboard with hot‑swappable switches and per‑key RGB.'
         }, {
             id: 11,
@@ -1574,7 +1578,7 @@
             originalPrice: 1099,
             rating: 4.9,
             reviews: 212,
-            image: 'https://source.unsplash.com/400x400/?smartphone',
+            image: 'https://picsum.photos/seed/smartphone/400/400',
             desc: '6.7" OLED display, 128GB storage, triple‑camera system, and all‑day battery.'
         }, {
             id: 12,
@@ -1584,7 +1588,7 @@
             originalPrice: 59,
             rating: 4.3,
             reviews: 87,
-            image: 'https://source.unsplash.com/400x400/?bluetooth-speaker',
+            image: 'https://picsum.photos/seed/speaker/400/400',
             desc: 'Waterproof portable speaker with 12h playtime and deep bass.'
         }, {
             id: 13,
@@ -1594,7 +1598,7 @@
             originalPrice: 49,
             rating: 4.5,
             reviews: 65,
-            image: 'https://source.unsplash.com/400x400/?desk-lamp',
+            image: 'https://picsum.photos/seed/desklamp/400/400',
             desc: 'LED desk lamp with touch control, 5 brightness levels, and flexible arm.'
         }, {
             id: 14,
@@ -1604,7 +1608,7 @@
             originalPrice: 89,
             rating: 4.7,
             reviews: 112,
-            image: 'https://source.unsplash.com/400x400/?backpack',
+            image: 'https://picsum.photos/seed/backpack/400/400',
             desc: 'Waterproof backpack with laptop sleeve, multiple compartments, and USB charging port.'
         }, {
             id: 15,
@@ -1614,7 +1618,7 @@
             originalPrice: 549,
             rating: 4.8,
             reviews: 76,
-            image: 'https://source.unsplash.com/400x400/?monitor',
+            image: 'https://picsum.photos/seed/monitor/400/400',
             desc: '27" 4K UHD monitor with HDR400, 95% DCI‑P3, and height‑adjustable stand.'
         }, {
             id: 16,
@@ -1624,7 +1628,7 @@
             originalPrice: 79,
             rating: 4.4,
             reviews: 189,
-            image: 'https://source.unsplash.com/400x400/?fitness-tracker',
+            image: 'https://picsum.photos/seed/fitness/400/400',
             desc: 'Waterproof fitness tracker with heart rate monitor, sleep tracking, and 7‑day battery.'
         }];
 
