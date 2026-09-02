@@ -477,31 +477,25 @@
             border-color: transparent;
         }
         .product-card .product-img {
-            padding: 16px 0;
+            padding: 12px;
             text-align: center;
             background: #f8faff;
             position: relative;
             transition: 0.3s;
-            height: 180px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4.5rem;
-            color: #1a1a2e;
+            overflow: hidden;
         }
-        .product-card .product-img .icon-bg {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.8rem;
+        .product-card .product-img img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
             transition: 0.4s;
-            color: #fff;
         }
-        .product-card:hover .product-img .icon-bg {
-            transform: scale(1.06) rotate(-3deg);
+        .product-card:hover .product-img img {
+            transform: scale(1.04);
         }
         .product-card .product-body {
             padding: 12px 18px 20px;
@@ -661,21 +655,17 @@
             text-align: center;
             padding: 8px 0;
             border-radius: 20px;
-            height: 200px;
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
-            color: #fff;
+            overflow: hidden;
+            background: #f8faff;
         }
-        .modal-product-img .icon-bg {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4.5rem;
+        .modal-product-img img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
         }
         .modal-product-title {
             font-size: 1.8rem;
@@ -859,15 +849,20 @@
             animation: fadeIn 0.3s ease;
         }
         .cart-item-icon {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             border-radius: 14px;
+            background: #f8faff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
-            color: #fff;
+            overflow: hidden;
             flex-shrink: 0;
+        }
+        .cart-item-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         .cart-item-info {
             flex: 1;
@@ -1233,13 +1228,8 @@
                 padding: 8px;
             }
             .product-card .product-img {
-                height: 140px;
-                font-size: 3.5rem;
-            }
-            .product-card .product-img .icon-bg {
-                width: 90px;
-                height: 90px;
-                font-size: 2.8rem;
+                height: 150px;
+                padding: 8px;
             }
             .category-nav {
                 padding: 4px 0;
@@ -1260,13 +1250,7 @@
                 font-size: 1.3rem;
             }
             .modal-product-img {
-                height: 160px;
-                font-size: 4rem;
-            }
-            .modal-product-img .icon-bg {
-                width: 120px;
-                height: 120px;
-                font-size: 3.5rem;
+                height: 180px;
             }
             .section-header h2 {
                 font-size: 1.1rem;
@@ -1481,17 +1465,7 @@
     </div>
 
     <script>
-        // ── PRODUCT DATA with icons and category colors ──
-        const categoryColors = {
-            Audio: '#1e88e5',
-            Computers: '#43a047',
-            Photography: '#e53935',
-            Wearables: '#8e24aa',
-            Lifestyle: '#f9a825',
-            Furniture: '#6d4c41',
-            Gaming: '#d32f2f'
-        };
-
+        // ── PRODUCT DATA with realistic image URLs from Unsplash (using specific search terms) ──
         const products = [{
             id: 1,
             name: 'Studio Wireless Pro',
@@ -1500,7 +1474,7 @@
             originalPrice: 199,
             rating: 4.8,
             reviews: 124,
-            icon: 'fa-headphones',
+            image: 'https://source.unsplash.com/400x400/?headphone',
             desc: 'Premium noise‑cancelling headphones with 40h battery life, spatial audio, and ultra‑comfortable ear cups.'
         }, {
             id: 2,
@@ -1510,7 +1484,7 @@
             originalPrice: 1499,
             rating: 4.9,
             reviews: 89,
-            icon: 'fa-laptop',
+            image: 'https://source.unsplash.com/400x400/?laptop',
             desc: 'Lightweight powerhouse with 16GB RAM, 512GB SSD, stunning 4K display, and all‑day battery life.'
         }, {
             id: 3,
@@ -1520,7 +1494,7 @@
             originalPrice: 1050,
             rating: 4.7,
             reviews: 56,
-            icon: 'fa-camera',
+            image: 'https://source.unsplash.com/400x400/?camera',
             desc: '24MP mirrorless camera with 4K video, image stabilization, and professional‑grade autofocus.'
         }, {
             id: 4,
@@ -1530,7 +1504,7 @@
             originalPrice: 299,
             rating: 4.6,
             reviews: 203,
-            icon: 'fa-watch',
+            image: 'https://source.unsplash.com/400x400/?watch',
             desc: 'GPS, heart rate monitor, sleep tracking, and 7‑day battery life in a sleek titanium design.'
         }, {
             id: 5,
@@ -1540,7 +1514,7 @@
             originalPrice: 29,
             rating: 5.0,
             reviews: 312,
-            icon: 'fa-mug-hot',
+            image: 'https://source.unsplash.com/400x400/?mug',
             desc: 'Handcrafted ceramic mug with a unique glaze, microwave and dishwasher safe.'
         }, {
             id: 6,
@@ -1550,7 +1524,7 @@
             originalPrice: 490,
             rating: 4.8,
             reviews: 78,
-            icon: 'fa-chair',
+            image: 'https://source.unsplash.com/400x400/?office-chair',
             desc: 'Adjustable office chair with lumbar support, breathable mesh back, and premium cushioning.'
         }, {
             id: 7,
@@ -1560,7 +1534,7 @@
             originalPrice: 99,
             rating: 4.5,
             reviews: 215,
-            icon: 'fa-earbuds',
+            image: 'https://source.unsplash.com/400x400/?earbuds',
             desc: 'True wireless earbuds with active noise cancellation, IPX5 waterproofing, and crystal‑clear calls.'
         }, {
             id: 8,
@@ -1570,7 +1544,7 @@
             originalPrice: 399,
             rating: 4.4,
             reviews: 134,
-            icon: 'fa-video',
+            image: 'https://source.unsplash.com/400x400/?action-camera',
             desc: 'Waterproof action camera with 4K/60fps, image stabilization, and dual‑screen for vlogging.'
         }, {
             id: 9,
@@ -1580,7 +1554,7 @@
             originalPrice: 79,
             rating: 4.7,
             reviews: 98,
-            icon: 'fa-mouse-pointer',
+            image: 'https://source.unsplash.com/400x400/?gaming-mouse',
             desc: 'Lightweight ergonomic gaming mouse with 16K DPI sensor and RGB lighting.'
         }, {
             id: 10,
@@ -1590,7 +1564,7 @@
             originalPrice: 119,
             rating: 4.6,
             reviews: 143,
-            icon: 'fa-keyboard',
+            image: 'https://source.unsplash.com/400x400/?keyboard',
             desc: 'Tactile mechanical keyboard with hot‑swappable switches and per‑key RGB.'
         }, {
             id: 11,
@@ -1600,7 +1574,7 @@
             originalPrice: 1099,
             rating: 4.9,
             reviews: 212,
-            icon: 'fa-mobile-alt',
+            image: 'https://source.unsplash.com/400x400/?smartphone',
             desc: '6.7" OLED display, 128GB storage, triple‑camera system, and all‑day battery.'
         }, {
             id: 12,
@@ -1610,7 +1584,7 @@
             originalPrice: 59,
             rating: 4.3,
             reviews: 87,
-            icon: 'fa-speaker',
+            image: 'https://source.unsplash.com/400x400/?bluetooth-speaker',
             desc: 'Waterproof portable speaker with 12h playtime and deep bass.'
         }, {
             id: 13,
@@ -1620,7 +1594,7 @@
             originalPrice: 49,
             rating: 4.5,
             reviews: 65,
-            icon: 'fa-lightbulb',
+            image: 'https://source.unsplash.com/400x400/?desk-lamp',
             desc: 'LED desk lamp with touch control, 5 brightness levels, and flexible arm.'
         }, {
             id: 14,
@@ -1630,7 +1604,7 @@
             originalPrice: 89,
             rating: 4.7,
             reviews: 112,
-            icon: 'fa-backpack',
+            image: 'https://source.unsplash.com/400x400/?backpack',
             desc: 'Waterproof backpack with laptop sleeve, multiple compartments, and USB charging port.'
         }, {
             id: 15,
@@ -1640,7 +1614,7 @@
             originalPrice: 549,
             rating: 4.8,
             reviews: 76,
-            icon: 'fa-tv',
+            image: 'https://source.unsplash.com/400x400/?monitor',
             desc: '27" 4K UHD monitor with HDR400, 95% DCI‑P3, and height‑adjustable stand.'
         }, {
             id: 16,
@@ -1650,7 +1624,7 @@
             originalPrice: 79,
             rating: 4.4,
             reviews: 189,
-            icon: 'fa-heartbeat',
+            image: 'https://source.unsplash.com/400x400/?fitness-tracker',
             desc: 'Waterproof fitness tracker with heart rate monitor, sleep tracking, and 7‑day battery.'
         }];
 
@@ -1696,10 +1670,6 @@
             return Math.round(((original - current) / original) * 100);
         }
 
-        function getCategoryColor(category) {
-            return categoryColors[category] || '#2874f0';
-        }
-
         // ── TOAST ──
         function showToast(message, type = 'success') {
             const toast = document.createElement('div');
@@ -1733,13 +1703,10 @@
             }
             grid.innerHTML = filtered.map(p => {
                 const disc = getDiscount(p.originalPrice, p.price);
-                const color = getCategoryColor(p.category);
                 return `
                     <div class="product-card" data-id="${p.id}">
                         <div class="product-img">
-                            <div class="icon-bg" style="background:${color};">
-                                <i class="fas ${p.icon}"></i>
-                            </div>
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" />
                         </div>
                         <div class="product-body">
                             <div class="product-title">${p.name}</div>
@@ -1803,9 +1770,7 @@
             const p = products.find(prod => prod.id === id);
             if (!p) return;
             selectedProductId = id;
-            const color = getCategoryColor(p.category);
-            document.getElementById('modalImgContainer').innerHTML =
-                `<div class="icon-bg" style="background:${color};"><i class="fas ${p.icon}"></i></div>`;
+            document.getElementById('modalImgContainer').innerHTML = `<img src="${p.image}" alt="${p.name}" />`;
             document.getElementById('modalTitle').textContent = p.name;
             document.getElementById('modalDesc').textContent = p.desc;
             const disc = getDiscount(p.originalPrice, p.price);
@@ -1868,10 +1833,9 @@
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
                 total += itemTotal;
-                const color = getCategoryColor(item.category);
                 html += `
                     <div class="cart-item">
-                        <div class="cart-item-icon" style="background:${color};"><i class="fas ${item.icon}"></i></div>
+                        <div class="cart-item-icon"><img src="${item.image}" alt="${item.name}" /></div>
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-price">$${item.price}</div>
