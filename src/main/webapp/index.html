@@ -396,6 +396,37 @@
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
         }
 
+        /* ── Back to Top ── */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 99;
+            background: #2874f0;
+            color: #fff;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(40, 116, 240, 0.3);
+            transition: 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(40, 116, 240, 0.4);
+        }
+
         /* ── Section Header ── */
         .section-header {
             display: flex;
@@ -446,7 +477,7 @@
             border-color: transparent;
         }
         .product-card .product-img {
-            padding: 16px 0 8px;
+            padding: 16px 0;
             text-align: center;
             background: #f8faff;
             position: relative;
@@ -455,16 +486,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            font-size: 4.5rem;
+            color: #1a1a2e;
         }
-        .product-card .product-img img {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
+        .product-card .product-img .icon-bg {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.8rem;
             transition: 0.4s;
+            color: #fff;
         }
-        .product-card:hover .product-img img {
-            transform: scale(1.04);
+        .product-card:hover .product-img .icon-bg {
+            transform: scale(1.06) rotate(-3deg);
         }
         .product-card .product-body {
             padding: 12px 18px 20px;
@@ -622,19 +659,23 @@
 
         .modal-product-img {
             text-align: center;
-            padding: 8px 0 4px;
-            background: #f8faff;
+            padding: 8px 0;
             border-radius: 20px;
             height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            font-size: 5rem;
+            color: #fff;
         }
-        .modal-product-img img {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
+        .modal-product-img .icon-bg {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
         }
         .modal-product-title {
             font-size: 1.8rem;
@@ -820,19 +861,13 @@
         .cart-item-icon {
             width: 48px;
             height: 48px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f8faff;
-            border-radius: 14px;
-            color: #1a1a2e;
+            font-size: 1.6rem;
+            color: #fff;
             flex-shrink: 0;
-            overflow: hidden;
-        }
-        .cart-item-icon img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
         }
         .cart-item-info {
             flex: 1;
@@ -1121,6 +1156,13 @@
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .back-to-top {
+                bottom: 20px;
+                left: 20px;
+                width: 42px;
+                height: 42px;
+                font-size: 1.2rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1192,7 +1234,12 @@
             }
             .product-card .product-img {
                 height: 140px;
-                padding: 8px 0;
+                font-size: 3.5rem;
+            }
+            .product-card .product-img .icon-bg {
+                width: 90px;
+                height: 90px;
+                font-size: 2.8rem;
             }
             .category-nav {
                 padding: 4px 0;
@@ -1214,6 +1261,12 @@
             }
             .modal-product-img {
                 height: 160px;
+                font-size: 4rem;
+            }
+            .modal-product-img .icon-bg {
+                width: 120px;
+                height: 120px;
+                font-size: 3.5rem;
             }
             .section-header h2 {
                 font-size: 1.1rem;
@@ -1232,6 +1285,13 @@
                 grid-template-columns: 1fr;
                 gap: 24px;
             }
+            .back-to-top {
+                bottom: 16px;
+                left: 16px;
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -1239,6 +1299,9 @@
 
     <!-- ── Toast Container ── -->
     <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ── Back to Top Button ── -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
     <!-- ── App Bar ── -->
     <header class="app-bar">
@@ -1418,7 +1481,17 @@
     </div>
 
     <script>
-        // ── PRODUCT DATA with real images (picsum.photos) ──
+        // ── PRODUCT DATA with icons and category colors ──
+        const categoryColors = {
+            Audio: '#1e88e5',
+            Computers: '#43a047',
+            Photography: '#e53935',
+            Wearables: '#8e24aa',
+            Lifestyle: '#f9a825',
+            Furniture: '#6d4c41',
+            Gaming: '#d32f2f'
+        };
+
         const products = [{
             id: 1,
             name: 'Studio Wireless Pro',
@@ -1427,7 +1500,7 @@
             originalPrice: 199,
             rating: 4.8,
             reviews: 124,
-            image: 'https://picsum.photos/seed/audio1/400/400',
+            icon: 'fa-headphones',
             desc: 'Premium noise‑cancelling headphones with 40h battery life, spatial audio, and ultra‑comfortable ear cups.'
         }, {
             id: 2,
@@ -1437,7 +1510,7 @@
             originalPrice: 1499,
             rating: 4.9,
             reviews: 89,
-            image: 'https://picsum.photos/seed/laptop1/400/400',
+            icon: 'fa-laptop',
             desc: 'Lightweight powerhouse with 16GB RAM, 512GB SSD, stunning 4K display, and all‑day battery life.'
         }, {
             id: 3,
@@ -1447,7 +1520,7 @@
             originalPrice: 1050,
             rating: 4.7,
             reviews: 56,
-            image: 'https://picsum.photos/seed/camera1/400/400',
+            icon: 'fa-camera',
             desc: '24MP mirrorless camera with 4K video, image stabilization, and professional‑grade autofocus.'
         }, {
             id: 4,
@@ -1457,7 +1530,7 @@
             originalPrice: 299,
             rating: 4.6,
             reviews: 203,
-            image: 'https://picsum.photos/seed/watch1/400/400',
+            icon: 'fa-watch',
             desc: 'GPS, heart rate monitor, sleep tracking, and 7‑day battery life in a sleek titanium design.'
         }, {
             id: 5,
@@ -1467,7 +1540,7 @@
             originalPrice: 29,
             rating: 5.0,
             reviews: 312,
-            image: 'https://picsum.photos/seed/mug1/400/400',
+            icon: 'fa-mug-hot',
             desc: 'Handcrafted ceramic mug with a unique glaze, microwave and dishwasher safe.'
         }, {
             id: 6,
@@ -1477,7 +1550,7 @@
             originalPrice: 490,
             rating: 4.8,
             reviews: 78,
-            image: 'https://picsum.photos/seed/chair1/400/400',
+            icon: 'fa-chair',
             desc: 'Adjustable office chair with lumbar support, breathable mesh back, and premium cushioning.'
         }, {
             id: 7,
@@ -1487,7 +1560,7 @@
             originalPrice: 99,
             rating: 4.5,
             reviews: 215,
-            image: 'https://picsum.photos/seed/earbuds1/400/400',
+            icon: 'fa-earbuds',
             desc: 'True wireless earbuds with active noise cancellation, IPX5 waterproofing, and crystal‑clear calls.'
         }, {
             id: 8,
@@ -1497,7 +1570,7 @@
             originalPrice: 399,
             rating: 4.4,
             reviews: 134,
-            image: 'https://picsum.photos/seed/action1/400/400',
+            icon: 'fa-video',
             desc: 'Waterproof action camera with 4K/60fps, image stabilization, and dual‑screen for vlogging.'
         }, {
             id: 9,
@@ -1507,7 +1580,7 @@
             originalPrice: 79,
             rating: 4.7,
             reviews: 98,
-            image: 'https://picsum.photos/seed/mouse1/400/400',
+            icon: 'fa-mouse-pointer',
             desc: 'Lightweight ergonomic gaming mouse with 16K DPI sensor and RGB lighting.'
         }, {
             id: 10,
@@ -1517,7 +1590,7 @@
             originalPrice: 119,
             rating: 4.6,
             reviews: 143,
-            image: 'https://picsum.photos/seed/keyboard1/400/400',
+            icon: 'fa-keyboard',
             desc: 'Tactile mechanical keyboard with hot‑swappable switches and per‑key RGB.'
         }, {
             id: 11,
@@ -1527,7 +1600,7 @@
             originalPrice: 1099,
             rating: 4.9,
             reviews: 212,
-            image: 'https://picsum.photos/seed/phone1/400/400',
+            icon: 'fa-mobile-alt',
             desc: '6.7" OLED display, 128GB storage, triple‑camera system, and all‑day battery.'
         }, {
             id: 12,
@@ -1537,7 +1610,7 @@
             originalPrice: 59,
             rating: 4.3,
             reviews: 87,
-            image: 'https://picsum.photos/seed/speaker1/400/400',
+            icon: 'fa-speaker',
             desc: 'Waterproof portable speaker with 12h playtime and deep bass.'
         }, {
             id: 13,
@@ -1547,7 +1620,7 @@
             originalPrice: 49,
             rating: 4.5,
             reviews: 65,
-            image: 'https://picsum.photos/seed/lamp1/400/400',
+            icon: 'fa-lightbulb',
             desc: 'LED desk lamp with touch control, 5 brightness levels, and flexible arm.'
         }, {
             id: 14,
@@ -1557,7 +1630,7 @@
             originalPrice: 89,
             rating: 4.7,
             reviews: 112,
-            image: 'https://picsum.photos/seed/backpack1/400/400',
+            icon: 'fa-backpack',
             desc: 'Waterproof backpack with laptop sleeve, multiple compartments, and USB charging port.'
         }, {
             id: 15,
@@ -1567,7 +1640,7 @@
             originalPrice: 549,
             rating: 4.8,
             reviews: 76,
-            image: 'https://picsum.photos/seed/monitor1/400/400',
+            icon: 'fa-tv',
             desc: '27" 4K UHD monitor with HDR400, 95% DCI‑P3, and height‑adjustable stand.'
         }, {
             id: 16,
@@ -1577,7 +1650,7 @@
             originalPrice: 79,
             rating: 4.4,
             reviews: 189,
-            image: 'https://picsum.photos/seed/fitness1/400/400',
+            icon: 'fa-heartbeat',
             desc: 'Waterproof fitness tracker with heart rate monitor, sleep tracking, and 7‑day battery.'
         }];
 
@@ -1600,6 +1673,7 @@
         const productCount = document.getElementById('productCount');
         const checkoutBtn = document.getElementById('checkoutBtn');
         const toastContainer = document.getElementById('toastContainer');
+        const backToTop = document.getElementById('backToTop');
 
         // ── HELPERS ──
         function getFilteredProducts() {
@@ -1620,6 +1694,10 @@
         function getDiscount(original, current) {
             if (!original || original <= current) return null;
             return Math.round(((original - current) / original) * 100);
+        }
+
+        function getCategoryColor(category) {
+            return categoryColors[category] || '#2874f0';
         }
 
         // ── TOAST ──
@@ -1655,9 +1733,14 @@
             }
             grid.innerHTML = filtered.map(p => {
                 const disc = getDiscount(p.originalPrice, p.price);
+                const color = getCategoryColor(p.category);
                 return `
                     <div class="product-card" data-id="${p.id}">
-                        <div class="product-img"><img src="${p.image}" alt="${p.name}" loading="lazy" /></div>
+                        <div class="product-img">
+                            <div class="icon-bg" style="background:${color};">
+                                <i class="fas ${p.icon}"></i>
+                            </div>
+                        </div>
                         <div class="product-body">
                             <div class="product-title">${p.name}</div>
                             <div class="product-category">${p.category}</div>
@@ -1703,7 +1786,6 @@
             }
             saveCart();
             renderCart();
-            // Visual feedback
             if (btnElement) {
                 const originalHtml = btnElement.innerHTML;
                 btnElement.innerHTML = '<i class="fas fa-check"></i> Added';
@@ -1721,7 +1803,9 @@
             const p = products.find(prod => prod.id === id);
             if (!p) return;
             selectedProductId = id;
-            document.getElementById('modalImgContainer').innerHTML = `<img src="${p.image}" alt="${p.name}" />`;
+            const color = getCategoryColor(p.category);
+            document.getElementById('modalImgContainer').innerHTML =
+                `<div class="icon-bg" style="background:${color};"><i class="fas ${p.icon}"></i></div>`;
             document.getElementById('modalTitle').textContent = p.name;
             document.getElementById('modalDesc').textContent = p.desc;
             const disc = getDiscount(p.originalPrice, p.price);
@@ -1729,7 +1813,6 @@
                 `$${p.price}${p.originalPrice ? `<span class="old">$${p.originalPrice}</span>` : ''}${disc ? ` <span style="font-size:0.9rem;color:#2ecc71;font-weight:700;">${disc}% OFF</span>` : ''}`;
             document.getElementById('modalRating').textContent = renderStars(p.rating) + ' (' + p.reviews + ' reviews)';
             productModal.classList.add('active');
-            document.getElementById('modalAddBtn').textContent = ' Add to Cart';
             document.getElementById('modalAddBtn').innerHTML = '<i class="fas fa-plus-circle"></i> Add to Cart';
             document.getElementById('modalAddBtn').classList.remove('added');
         }
@@ -1785,9 +1868,10 @@
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
                 total += itemTotal;
+                const color = getCategoryColor(item.category);
                 html += `
                     <div class="cart-item">
-                        <div class="cart-item-icon"><img src="${item.image}" alt="${item.name}" /></div>
+                        <div class="cart-item-icon" style="background:${color};"><i class="fas ${item.icon}"></i></div>
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
                             <div class="cart-item-price">$${item.price}</div>
@@ -1805,7 +1889,6 @@
             cartTotal.textContent = '$' + total.toFixed(2);
             updateBadge();
 
-            // attach events
             cartItemsContainer.querySelectorAll('.qty-inc').forEach(btn => {
                 btn.onclick = function(e) {
                     e.stopPropagation();
@@ -1917,6 +2000,18 @@
                 showToast(`Subscribed with ${email}!`, 'success');
                 this.reset();
             }
+        });
+
+        // ── BACK TO TOP ──
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // ── KEYBOARD SHORTCUT ──
