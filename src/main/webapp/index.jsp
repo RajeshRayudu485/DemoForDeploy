@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  <%-- FIX: added fn import --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
 
     <style>
-        /* ===== RESET & BASE (same as before, keep all CSS) ===== */
+        /* ===== RESET & BASE (same as before) ===== */
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         :root {
             --primary: #6c3ef4; --primary-dark: #5228c9; --primary-light: #eee9ff;
@@ -245,7 +246,7 @@
         <div class="stats-bar">
             <div class="stat-item">
                 <i class="fas fa-box"></i>
-                <span><strong id="totalProducts">${fn:length(productList)}</strong> <span class="stat-value">Products</span></span>
+                <span><strong>${fn:length(productList)}</strong> <span class="stat-value">Products</span></span>
             </div>
             <div class="stat-item">
                 <i class="fas fa-tags"></i>
@@ -371,8 +372,6 @@
             price: parseFloat(card.dataset.price),
             emoji: card.querySelector('.emoji-icon').textContent,
             badge: card.querySelector('.product-badge')?.textContent || null,
-            // we can also get rating/reviews if needed, but they are not in data attributes – we'll rely on DOM for sorting.
-            // For sorting, we already have data attributes.
         }));
 
         // ============================================================
@@ -469,7 +468,6 @@
                 showToast(`Added "${product.name}" to cart`, 'success');
             }
             saveCart();
-            // Update the "Add to Cart" button state
             updateAddButtons();
         }
 
@@ -498,7 +496,7 @@
         }
 
         // ============================================================
-        // 6. UPDATE "ADD TO CART" BUTTONS (toggle in-cart class)
+        // 6. UPDATE "ADD TO CART" BUTTONS
         // ============================================================
         function updateAddButtons() {
             document.querySelectorAll('.add-btn').forEach(btn => {
@@ -536,7 +534,6 @@
             cart.forEach(item => {
                 const subtotal = item.price * item.qty;
                 total += subtotal;
-                // get gradient from the corresponding product card
                 const card = document.querySelector(`.product-card[data-id="${item.id}"]`);
                 let gradient = 'linear-gradient(135deg, #6c3ef4, #a78bfa)';
                 if (card) {
@@ -592,18 +589,16 @@
         }
 
         // ============================================================
-        // 8. FILTER, SORT, SEARCH (client‑side)
+        // 8. FILTER, SORT, SEARCH
         // ============================================================
         function filterAndSort() {
             const cards = document.querySelectorAll('.product-card');
             let visible = Array.from(cards);
 
-            // Category filter
             if (currentCategory !== 'all') {
                 visible = visible.filter(card => card.dataset.category === currentCategory);
             }
 
-            // Search filter
             if (searchQuery.trim()) {
                 const q = searchQuery.trim().toLowerCase();
                 visible = visible.filter(card => {
@@ -613,7 +608,6 @@
                 });
             }
 
-            // Sort
             switch (currentSort) {
                 case 'price-asc':
                     visible.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
@@ -628,11 +622,9 @@
                     break;
             }
 
-            // Show/hide cards
             cards.forEach(card => card.style.display = 'none');
             visible.forEach(card => card.style.display = '');
 
-            // Show empty state if none visible
             const grid = document.getElementById('productGrid');
             const empty = grid.querySelector('.empty-state');
             if (visible.length === 0) {
@@ -767,15 +759,13 @@
         // ============================================================
         // 13. INIT
         // ============================================================
-        // Update "Add to Cart" buttons based on current cart
         updateAddButtons();
-        // Render cart initially
         renderCart();
         updateBadge();
         updateCheckoutBtn();
         updateStats();
 
-        console.log('🚀 ShopVerse JSP (fixed) loaded with ' + products.length + ' products.');
+        console.log('🚀 ShopVerse JSP (final) loaded with ' + products.length + ' products.');
         console.log('📦 ' + cart.length + ' items in cart.');
     </script>
 
