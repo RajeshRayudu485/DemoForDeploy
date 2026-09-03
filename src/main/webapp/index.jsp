@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  <%-- FIX: added fn import --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -207,6 +207,111 @@
     </style>
 </head>
 <body>
+
+    <!-- ============================================================ -->
+    <!--  SCRIPTLET: Build product data and expose to EL                -->
+    <!-- ============================================================ -->
+    <%
+        // Build product list in Java for use in JSTL
+        java.util.List<java.util.Map<String, Object>> productList = new java.util.ArrayList<java.util.Map<String, Object>>();
+
+        java.util.Map<String, Object> p1 = new java.util.HashMap<>();
+        p1.put("id", 1); p1.put("name", "Smartphone Pro Max"); p1.put("category", "electronics");
+        p1.put("price", 999.99); p1.put("oldPrice", 1199.99); p1.put("rating", 4.9);
+        p1.put("reviews", 512); p1.put("emoji", "📱"); p1.put("badge", "Bestseller");
+        productList.add(p1);
+
+        java.util.Map<String, Object> p2 = new java.util.HashMap<>();
+        p2.put("id", 2); p2.put("name", "Ultrabook Laptop 16\""); p2.put("category", "electronics");
+        p2.put("price", 1499.99); p2.put("oldPrice", 1799.99); p2.put("rating", 4.8);
+        p2.put("reviews", 284); p2.put("emoji", "💻"); p2.put("badge", "New");
+        productList.add(p2);
+
+        java.util.Map<String, Object> p3 = new java.util.HashMap<>();
+        p3.put("id", 3); p3.put("name", "Wireless Noise-Canceling Headphones"); p3.put("category", "electronics");
+        p3.put("price", 149.99); p3.put("oldPrice", 199.99); p3.put("rating", 4.7);
+        p3.put("reviews", 342); p3.put("emoji", "🎧"); p3.put("badge", "Sale");
+        productList.add(p3);
+
+        java.util.Map<String, Object> p4 = new java.util.HashMap<>();
+        p4.put("id", 4); p4.put("name", "Premium Cotton T-Shirt (Pack of 3)"); p4.put("category", "clothing");
+        p4.put("price", 39.99); p4.put("oldPrice", null); p4.put("rating", 4.5);
+        p4.put("reviews", 187); p4.put("emoji", "👕"); p4.put("badge", null);
+        productList.add(p4);
+
+        java.util.Map<String, Object> p5 = new java.util.HashMap<>();
+        p5.put("id", 5); p5.put("name", "Smart LED Desk Lamp with Qi Charger"); p5.put("category", "electronics");
+        p5.put("price", 79.99); p5.put("oldPrice", 99.99); p5.put("rating", 4.6);
+        p5.put("reviews", 93); p5.put("emoji", "💡"); p5.put("badge", null);
+        productList.add(p5);
+
+        java.util.Map<String, Object> p6 = new java.util.HashMap<>();
+        p6.put("id", 6); p6.put("name", "Minimalist Ceramic Coffee Mug Set"); p6.put("category", "home");
+        p6.put("price", 24.99); p6.put("oldPrice", null); p6.put("rating", 4.3);
+        p6.put("reviews", 215); p6.put("emoji", "☕"); p6.put("badge", null);
+        productList.add(p6);
+
+        java.util.Map<String, Object> p7 = new java.util.HashMap<>();
+        p7.put("id", 7); p7.put("name", "Hydrating Face Serum with Vitamin C"); p7.put("category", "beauty");
+        p7.put("price", 54.99); p7.put("oldPrice", 69.99); p7.put("rating", 4.9);
+        p7.put("reviews", 412); p7.put("emoji", "🧴"); p7.put("badge", "Bestseller");
+        productList.add(p7);
+
+        java.util.Map<String, Object> p8 = new java.util.HashMap<>();
+        p8.put("id", 8); p8.put("name", "Slim Fit Jeans (Stretch Denim)"); p8.put("category", "clothing");
+        p8.put("price", 59.99); p8.put("oldPrice", null); p8.put("rating", 4.4);
+        p8.put("reviews", 108); p8.put("emoji", "👖"); p8.put("badge", null);
+        productList.add(p8);
+
+        java.util.Map<String, Object> p9 = new java.util.HashMap<>();
+        p9.put("id", 9); p9.put("name", "Portable Bluetooth Speaker, 20W"); p9.put("category", "electronics");
+        p9.put("price", 89.99); p9.put("oldPrice", 119.99); p9.put("rating", 4.6);
+        p9.put("reviews", 276); p9.put("emoji", "🔊"); p9.put("badge", "Sale");
+        productList.add(p9);
+
+        java.util.Map<String, Object> p10 = new java.util.HashMap<>();
+        p10.put("id", 10); p10.put("name", "Bamboo Cutting Board Set (3-Piece)"); p10.put("category", "home");
+        p10.put("price", 34.99); p10.put("oldPrice", null); p10.put("rating", 4.2);
+        p10.put("reviews", 89); p10.put("emoji", "🪵"); p10.put("badge", null);
+        productList.add(p10);
+
+        java.util.Map<String, Object> p11 = new java.util.HashMap<>();
+        p11.put("id", 11); p11.put("name", "Organic Rose Water Toner 200ml"); p11.put("category", "beauty");
+        p11.put("price", 19.99); p11.put("oldPrice", 26.99); p11.put("rating", 4.7);
+        p11.put("reviews", 334); p11.put("emoji", "🌹"); p11.put("badge", null);
+        productList.add(p11);
+
+        java.util.Map<String, Object> p12 = new java.util.HashMap<>();
+        p12.put("id", 12); p12.put("name", "Classic Leather Backpack 15\""); p12.put("category", "clothing");
+        p12.put("price", 74.99); p12.put("oldPrice", 89.99); p12.put("rating", 4.8);
+        p12.put("reviews", 156); p12.put("emoji", "🎒"); p12.put("badge", "New");
+        productList.add(p12);
+
+        java.util.Map<String, Object> p13 = new java.util.HashMap<>();
+        p13.put("id", 13); p13.put("name", "Scented Soy Candle Jar (Lavender)"); p13.put("category", "home");
+        p13.put("price", 16.99); p13.put("oldPrice", null); p13.put("rating", 4.1);
+        p13.put("reviews", 67); p13.put("emoji", "🕯️"); p13.put("badge", null);
+        productList.add(p13);
+
+        java.util.Map<String, Object> p14 = new java.util.HashMap<>();
+        p14.put("id", 14); p14.put("name", "Wireless Charging Pad (Fast Charge)"); p14.put("category", "electronics");
+        p14.put("price", 29.99); p14.put("oldPrice", 44.99); p14.put("rating", 4.4);
+        p14.put("reviews", 203); p14.put("emoji", "🔋"); p14.put("badge", "Sale");
+        productList.add(p14);
+
+        java.util.Map<String, Object> p15 = new java.util.HashMap<>();
+        p15.put("id", 15); p15.put("name", "4K Action Camera Waterproof"); p15.put("category", "electronics");
+        p15.put("price", 199.99); p15.put("oldPrice", 249.99); p15.put("rating", 4.7);
+        p15.put("reviews", 128); p15.put("emoji", "📷"); p15.put("badge", null);
+        productList.add(p15);
+
+        // Make it available to EL (Expression Language)
+        pageContext.setAttribute("productList", productList);
+        request.setAttribute("productList", productList);
+
+        // Debug: print to server log so you can confirm it's built
+        System.out.println(">>> ShopVerse JSP: productList size = " + productList.size());
+    %>
 
     <!-- ===== HEADER ===== -->
     <header>
