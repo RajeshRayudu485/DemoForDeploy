@@ -14,9 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
 
     <style>
-        /* =============================================================
-           CSS is exactly the same as before – keep everything
-           ============================================================= */
+        /* ===== RESET & BASE ===== */
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         :root {
             --primary: #6c3ef4; --primary-dark: #5228c9; --primary-light: #eee9ff;
@@ -31,6 +29,7 @@
         ::-webkit-scrollbar-track { background:var(--bg); }
         ::-webkit-scrollbar-thumb { background:var(--primary); border-radius:10px; }
 
+        /* HEADER */
         header { background:var(--surface); border-bottom:1px solid var(--border); padding:16px 24px; position:sticky; top:0; z-index:100; backdrop-filter:blur(12px); background:rgba(255,255,255,0.85); }
         .header-inner { max-width:1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
         .logo { display:flex; align-items:center; gap:10px; font-size:1.6rem; font-weight:800; letter-spacing:-0.5px; color:var(--text); text-decoration:none; }
@@ -48,8 +47,10 @@
         .cart-badge { position:absolute; top:-4px; right:-4px; background:var(--accent); color:#fff; font-size:0.7rem; font-weight:700; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
         .cart-btn:hover .cart-badge { background:#fff; color:var(--primary); }
 
+        /* MAIN */
         main { flex:1; max-width:1280px; margin:0 auto; padding:32px 24px 60px; width:100%; }
 
+        /* HERO */
         .hero { background:linear-gradient(135deg, var(--primary-light), #f3f0ff); border-radius:var(--radius); padding:48px 40px; margin-bottom:40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; position:relative; overflow:hidden; }
         .hero-text { position:relative; z-index:1; }
         .hero-text h1 { font-size:2.2rem; font-weight:800; letter-spacing:-0.5px; line-height:1.2; }
@@ -59,12 +60,14 @@
         .hero-cta:hover { background:var(--primary-dark); transform:translateY(-2px); box-shadow:0 8px 25px rgba(108,62,244,0.35); }
         .hero-icon { font-size:4rem; color:var(--primary); opacity:0.25; position:relative; z-index:1; }
 
+        /* STATS BAR */
         .stats-bar { display:flex; flex-wrap:wrap; gap:20px 40px; padding:16px 20px; background:var(--surface); border-radius:var(--radius); border:1px solid var(--border); margin-bottom:28px; box-shadow:var(--shadow); }
         .stats-bar .stat-item { display:flex; align-items:center; gap:10px; font-size:0.9rem; }
         .stats-bar .stat-item i { color:var(--primary); font-size:1.1rem; width:20px; text-align:center; }
         .stats-bar .stat-item strong { font-weight:700; color:var(--text); }
         .stats-bar .stat-item .stat-value { color:var(--text-muted); }
 
+        /* FILTER BAR */
         .filter-bar { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:32px; background:var(--surface); padding:14px 20px; border-radius:var(--radius); box-shadow:var(--shadow); border:1px solid var(--border); }
         .filter-bar .label { font-weight:600; font-size:0.9rem; color:var(--text-muted); margin-right:4px; display:flex; align-items:center; gap:6px; }
         .filter-btn { background:transparent; border:1px solid var(--border); padding:8px 20px; border-radius:50px; font-size:0.85rem; font-weight:500; cursor:pointer; transition:var(--transition); font-family:inherit; color:var(--text); }
@@ -74,6 +77,7 @@
         .filter-bar .sort-wrap select { padding:8px 14px; border-radius:50px; border:1px solid var(--border); background:var(--surface); font-family:inherit; font-size:0.85rem; color:var(--text); outline:none; cursor:pointer; transition:var(--transition); }
         .filter-bar .sort-wrap select:focus { border-color:var(--primary); }
 
+        /* PRODUCT GRID */
         .product-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:24px; }
         .product-card { background:var(--surface); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:var(--transition); border:1px solid var(--border); display:flex; flex-direction:column; animation:fadeIn 0.4s ease; }
         .product-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-hover); border-color:var(--primary); }
@@ -162,7 +166,7 @@
         .checkout-modal .confirm-btn { width:100%; background:#22c55e; color:#fff; border:none; padding:14px; border-radius:var(--radius-sm); font-weight:700; font-size:1rem; cursor:pointer; transition:var(--transition); font-family:inherit; display:flex; align-items:center; justify-content:center; gap:8px; }
         .checkout-modal .confirm-btn:hover { background:#16a34a; transform:scale(1.01); }
 
-        /* LOADING SPINNER */
+        /* LOADING */
         .loader { display:flex; justify-content:center; align-items:center; padding:60px 20px; grid-column:1 / -1; gap:12px; color:var(--text-muted); }
         .loader i { font-size:2rem; color:var(--primary); animation:spin 1s linear infinite; }
         @keyframes spin { 0% { transform:rotate(0deg); } 100% { transform:rotate(360deg); } }
@@ -204,7 +208,7 @@
 </head>
 <body>
 
-    <!-- ===== HEADER (same) ===== -->
+    <!-- ===== HEADER ===== -->
     <header>
         <div class="header-inner">
             <a href="#" class="logo"><i class="fas fa-cube"></i> Shop<span>Verse</span></a>
@@ -227,7 +231,7 @@
         <section class="hero">
             <div class="hero-text">
                 <h1>Discover <span>Premium</span> Products</h1>
-                <p>Real products, real images – powered by DummyJSON.</p>
+                <p>Real products with real images – powered by DummyJSON.</p>
                 <button class="hero-cta" id="heroCta"><i class="fas fa-rocket"></i> Start Shopping</button>
             </div>
             <div class="hero-icon"><i class="fas fa-shopping-bag"></i></div>
@@ -245,7 +249,7 @@
         <div class="filter-bar" id="filterBar">
             <span class="label"><i class="fas fa-tag"></i> Category:</span>
             <button class="filter-btn active" data-category="all">All</button>
-            <!-- Categories will be dynamically added by JS -->
+            <!-- Categories will be added by JavaScript -->
             <div class="sort-wrap">
                 <label for="sortSelect"><i class="fas fa-arrow-up-wide-short"></i></label>
                 <select id="sortSelect">
@@ -293,7 +297,7 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- ============================================================ -->
-    <!-- JAVASCRIPT – Fetch real products from DummyJSON             -->
+    <!-- JAVASCRIPT – Fetch real products from DummyJSON, no JSTL/EL  -->
     <!-- ============================================================ -->
     <script>
         // ============================================================
@@ -509,7 +513,7 @@
         }
 
         // ============================================================
-        //  RENDER: PRODUCTS (from allProducts array)
+        //  RENDER: PRODUCTS
         // ============================================================
         function getFilteredProducts() {
             let list = [...allProducts];
@@ -560,18 +564,19 @@
             grid.innerHTML = list.map(p => {
                 const inCart = cart.some(item => item.id === p.id);
                 const stars = '★'.repeat(Math.floor(p.rating)) + (p.rating % 1 >= 0.5 ? '★' : '');
+                const saleBadge = p.discountPercentage > 10 ? `<span class="product-badge">Sale</span>` : '';
                 return `
                     <div class="product-card" data-id="${p.id}">
                         <div class="product-image">
                             <img src="${p.thumbnail}" alt="${p.title}" loading="lazy" />
-                            ${p.discountPercentage > 10 ? `<span class="product-badge">Sale</span>` : ''}
+                            ${saleBadge}
                         </div>
                         <div class="product-info">
                             <div class="category">${p.category}</div>
                             <div class="name">${p.title}</div>
                             <div class="rating">
                                 ${stars}
-                                <span>(${p.reviews ? p.reviews : 0})</span>
+                                <span>(${p.reviews || 0})</span>
                             </div>
                             <div class="price-row">
                                 <span class="price">$${p.price.toFixed(2)}</span>
@@ -596,7 +601,6 @@
                 const res = await fetch('https://dummyjson.com/products?limit=100');
                 const data = await res.json();
 
-                // Map DummyJSON fields to our format
                 allProducts = data.products.map(p => ({
                     id: p.id,
                     title: p.title,
@@ -607,8 +611,6 @@
                     reviews: p.reviews || Math.floor(Math.random() * 500) + 20,
                     thumbnail: p.thumbnail,
                     discountPercentage: p.discountPercentage,
-                    // for sorting/display
-                    name: p.title,
                 }));
 
                 // Update stats
@@ -618,19 +620,18 @@
                 const avg = allProducts.reduce((sum, p) => sum + p.rating, 0) / allProducts.length;
                 avgRatingEl.textContent = avg.toFixed(1);
 
-                // Populate category filter buttons dynamically
-                const filterContainer = document.getElementById('filterBar');
-                // Remove existing category buttons (keep "All" and sort)
-                const allBtn = filterContainer.querySelector('.filter-btn.active');
-                const sortWrap = filterContainer.querySelector('.sort-wrap');
-                filterContainer.querySelectorAll('.filter-btn:not(.active)').forEach(b => b.remove());
+                // Build category filter buttons dynamically
+                const allBtn = filterBar.querySelector('.filter-btn.active');
+                const sortWrap = filterBar.querySelector('.sort-wrap');
+                // Remove old category buttons (keep "All" and sort)
+                filterBar.querySelectorAll('.filter-btn:not(.active)').forEach(b => b.remove());
 
                 categories.forEach(cat => {
                     const btn = document.createElement('button');
                     btn.className = 'filter-btn';
                     btn.dataset.category = cat;
                     btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-                    filterContainer.insertBefore(btn, sortWrap);
+                    filterBar.insertBefore(btn, sortWrap);
                     btn.addEventListener('click', () => {
                         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                         btn.classList.add('active');
@@ -645,9 +646,9 @@
                 updateCheckoutBtn();
                 updateStats();
 
-                console.log(`✅ Loaded ${allProducts.length} real products with images from DummyJSON!`);
+                console.log(`✅ Loaded ${allProducts.length} real products with images from DummyJSON.`);
             } catch (err) {
-                console.error('❌ Failed to fetch products:', err);
+                console.error('❌ Failed to load products:', err);
                 grid.innerHTML = `
                     <div class="empty-state">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -763,16 +764,13 @@
         // ============================================================
         //  INIT
         // ============================================================
-        // Load products from the API
         fetchProducts();
-
-        // Initial cart render
         renderCart();
         updateBadge();
         updateCheckoutBtn();
         updateStats();
 
-        console.log('🚀 ShopVerse with REAL products from DummyJSON!');
+        console.log('🚀 ShopVerse with REAL products from DummyJSON (no EL)');
     </script>
 </body>
 </html>
