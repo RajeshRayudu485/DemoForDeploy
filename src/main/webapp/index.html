@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ShopVerse — Real Products</title>
+    <title>PlantVerse — Your Green Store</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -16,17 +16,17 @@
         /* ===== RESET & BASE ===== */
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         :root {
-            --primary: #6c3ef4;
-            --primary-dark: #5228c9;
-            --primary-light: #eee9ff;
-            --accent: #f97316;
-            --bg: #f8f9fc;
+            --primary: #2d6a4f;
+            --primary-dark: #1b4b36;
+            --primary-light: #e8f5e9;
+            --accent: #d4a373;
+            --bg: #f8faf7;
             --surface: #ffffff;
-            --text: #1e1b2e;
-            --text-muted: #6b6a7a;
-            --border: #e4e4ed;
+            --text: #1b3b2b;
+            --text-muted: #4a6b55;
+            --border: #dce8d6;
             --shadow: 0 8px 30px rgba(0,0,0,0.06);
-            --shadow-hover: 0 12px 40px rgba(108,62,244,0.15);
+            --shadow-hover: 0 12px 40px rgba(45,106,79,0.15);
             --radius: 16px;
             --radius-sm: 10px;
             --transition: 0.25s ease;
@@ -89,7 +89,7 @@
         }
         .search-bar:focus-within {
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(108,62,244,0.12);
+            box-shadow: 0 0 0 4px rgba(45,106,79,0.12);
         }
         .search-bar input {
             flex: 1;
@@ -180,7 +180,7 @@
 
         /* HERO */
         .hero {
-            background: linear-gradient(135deg, var(--primary-light), #f3f0ff);
+            background: linear-gradient(135deg, var(--primary-light), #f4faf2);
             border-radius: var(--radius);
             padding: 48px 40px;
             margin-bottom: 40px;
@@ -224,7 +224,7 @@
         .hero-cta:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(108,62,244,0.35);
+            box-shadow: 0 8px 25px rgba(45,106,79,0.35);
         }
         .hero-icon {
             font-size: 4rem;
@@ -360,7 +360,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #f0f0f0;
+            background: #f0f5ed;
             position: relative;
             overflow: hidden;
         }
@@ -906,9 +906,9 @@
     <!-- ===== HEADER ===== -->
     <header>
         <div class="header-inner">
-            <a href="#" class="logo"><i class="fas fa-cube"></i> Shop<span>Verse</span></a>
+            <a href="#" class="logo"><i class="fas fa-seedling"></i> Plant<span>Verse</span></a>
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for products..." />
+                <input type="text" id="searchInput" placeholder="Search for plants..." />
                 <button id="searchBtn"><i class="fas fa-search"></i> <span>Search</span></button>
             </div>
             <div class="header-actions">
@@ -925,16 +925,16 @@
         <!-- Hero -->
         <section class="hero">
             <div class="hero-text">
-                <h1>Discover <span>Premium</span> Products</h1>
-                <p>Real products with real images – powered by DummyJSON.</p>
-                <button class="hero-cta" id="heroCta"><i class="fas fa-rocket"></i> Start Shopping</button>
+                <h1>Bring <span>Nature</span> Indoors</h1>
+                <p>Handpicked houseplants, pots, and accessories – delivered to your doorstep.</p>
+                <button class="hero-cta" id="heroCta"><i class="fas fa-leaf"></i> Start Shopping</button>
             </div>
-            <div class="hero-icon"><i class="fas fa-shopping-bag"></i></div>
+            <div class="hero-icon"><i class="fas fa-tree"></i></div>
         </section>
 
         <!-- Stats Bar -->
         <div class="stats-bar">
-            <div class="stat-item"><i class="fas fa-box"></i> <span><strong id="totalProducts">0</strong> <span class="stat-value">Products</span></span></div>
+            <div class="stat-item"><i class="fas fa-box"></i> <span><strong id="totalProducts">0</strong> <span class="stat-value">Plants</span></span></div>
             <div class="stat-item"><i class="fas fa-tags"></i> <span><strong id="totalCategories">0</strong> <span class="stat-value">Categories</span></span></div>
             <div class="stat-item"><i class="fas fa-star"></i> <span><strong id="avgRating">0.0</strong> <span class="stat-value">Avg. Rating</span></span></div>
             <div class="stat-item"><i class="fas fa-shopping-cart"></i> <span><strong id="cartItemCount">0</strong> <span class="stat-value">In Cart</span></span></div>
@@ -958,7 +958,7 @@
 
         <!-- Product Grid -->
         <div class="product-grid" id="productGrid">
-            <div class="loader"><i class="fas fa-spinner"></i> Loading products...</div>
+            <div class="loader"><i class="fas fa-spinner"></i> Loading plants...</div>
         </div>
     </main>
 
@@ -982,7 +982,7 @@
         <div class="modal-box">
             <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
             <h2><i class="fas fa-check-circle"></i> Order Confirmed</h2>
-            <p>Thank you for your purchase! Your order has been placed successfully.</p>
+            <p>Thank you for your purchase! Your leafy friends are on their way.</p>
             <div class="order-summary" id="orderSummary"></div>
             <button class="confirm-btn" id="modalConfirm"><i class="fas fa-thumbs-up"></i> Continue Shopping</button>
         </div>
@@ -992,14 +992,32 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- ============================================================ -->
-    <!-- JAVASCRIPT – Fetch real products from DummyJSON              -->
+    <!-- JAVASCRIPT – Plant Catalog (Local Data)                     -->
     <!-- ============================================================ -->
     <script>
+        // ============================================================
+        //  PLANT DATA (Hardcoded for the perfect plant store)
+        // ============================================================
+        const PLANT_PRODUCTS = [
+            { id: 1, title: 'Monstera Deliciosa', category: 'Foliage', price: 45, oldPrice: 60, rating: 4.9, reviews: 120, thumbnail: 'https://picsum.photos/seed/plant1/300/300', discountPercentage: 25 },
+            { id: 2, title: 'Fiddle Leaf Fig', category: 'Statement', price: 75, oldPrice: 95, rating: 4.8, reviews: 85, thumbnail: 'https://picsum.photos/seed/plant2/300/300', discountPercentage: 21 },
+            { id: 3, title: 'Snake Plant Laurentii', category: 'Air Purifier', price: 30, oldPrice: 40, rating: 5.0, reviews: 210, thumbnail: 'https://picsum.photos/seed/plant3/300/300', discountPercentage: 25 },
+            { id: 4, title: 'Golden Pothos', category: 'Trailing', price: 25, oldPrice: 32, rating: 4.7, reviews: 95, thumbnail: 'https://picsum.photos/seed/plant4/300/300', discountPercentage: 22 },
+            { id: 5, title: 'Echeveria Succulent', category: 'Succulents', price: 12, oldPrice: 16, rating: 4.9, reviews: 70, thumbnail: 'https://picsum.photos/seed/plant5/300/300', discountPercentage: 25 },
+            { id: 6, title: 'Calathea Orbifolia', category: 'Pets-safe', price: 40, oldPrice: 52, rating: 4.6, reviews: 60, thumbnail: 'https://picsum.photos/seed/plant6/300/300', discountPercentage: 23 },
+            { id: 7, title: 'ZZ Plant', category: 'Low Light', price: 35, oldPrice: 45, rating: 4.8, reviews: 145, thumbnail: 'https://picsum.photos/seed/plant7/300/300', discountPercentage: 22 },
+            { id: 8, title: 'String of Pearls', category: 'Trailing', price: 28, oldPrice: 36, rating: 4.7, reviews: 80, thumbnail: 'https://picsum.photos/seed/plant8/300/300', discountPercentage: 22 },
+            { id: 9, title: 'Aloe Vera', category: 'Succulents', price: 18, oldPrice: 24, rating: 4.9, reviews: 190, thumbnail: 'https://picsum.photos/seed/plant9/300/300', discountPercentage: 25 },
+            { id: 10, title: 'Rubber Tree', category: 'Foliage', price: 55, oldPrice: 70, rating: 4.5, reviews: 50, thumbnail: 'https://picsum.photos/seed/plant10/300/300', discountPercentage: 21 },
+            { id: 11, title: 'Peace Lily', category: 'Air Purifier', price: 32, oldPrice: 42, rating: 4.8, reviews: 110, thumbnail: 'https://picsum.photos/seed/plant11/300/300', discountPercentage: 24 },
+            { id: 12, title: 'Jade Plant', category: 'Succulents', price: 22, oldPrice: 28, rating: 4.6, reviews: 65, thumbnail: 'https://picsum.photos/seed/plant12/300/300', discountPercentage: 21 }
+        ];
+
         // ============================================================
         //  STATE
         // ============================================================
         let allProducts = [];
-        let cart = JSON.parse(localStorage.getItem('shopverse_cart')) || [];
+        let cart = JSON.parse(localStorage.getItem('plantverse_cart')) || [];
         let currentCategory = 'all';
         let currentSort = 'default';
         let searchQuery = '';
@@ -1052,7 +1070,7 @@
         //  CART HELPERS
         // ============================================================
         function saveCart() {
-            localStorage.setItem('shopverse_cart', JSON.stringify(cart));
+            localStorage.setItem('plantverse_cart', JSON.stringify(cart));
             renderCart();
             updateBadge();
             updateCheckoutBtn();
@@ -1093,7 +1111,7 @@
                     qty: 1,
                     image: product.thumbnail
                 });
-                showToast(`Added "${product.title}" to cart`, 'success');
+                showToast(`🌿 "${product.title}" added to cart`, 'success');
             }
             saveCart();
             updateAddButtons();
@@ -1146,7 +1164,7 @@
                     <div class="empty-cart">
                         <i class="fas fa-shopping-bag"></i>
                         <p>Your cart is empty.</p>
-                        <small style="color: var(--text-muted);">Start adding some great products!</small>
+                        <small style="color: var(--text-muted);">Add some beautiful plants!</small>
                     </div>
                 `;
                 cartTotalEl.textContent = '$0.00';
@@ -1238,7 +1256,6 @@
                 default:
                     break;
             }
-
             return list;
         }
 
@@ -1249,7 +1266,7 @@
                 grid.innerHTML = `
                     <div class="empty-state">
                         <i class="fas fa-search"></i>
-                        <h3>No products found</h3>
+                        <h3>No plants found</h3>
                         <p>Try adjusting your filters or search.</p>
                     </div>
                 `;
@@ -1289,69 +1306,44 @@
         }
 
         // ============================================================
-        //  FETCH PRODUCTS FROM DUMMYJSON
+        //  LOAD PLANT DATA
         // ============================================================
-        async function fetchProducts() {
-            try {
-                const res = await fetch('https://dummyjson.com/products?limit=100');
-                const data = await res.json();
+        function loadPlantData() {
+            allProducts = PLANT_PRODUCTS;
 
-                allProducts = data.products.map(p => ({
-                    id: p.id,
-                    title: p.title,
-                    category: p.category,
-                    price: p.price,
-                    oldPrice: Math.round(p.price * (1 + p.discountPercentage / 100)),
-                    rating: p.rating,
-                    reviews: p.reviews || Math.floor(Math.random() * 500) + 20,
-                    thumbnail: p.thumbnail,
-                    discountPercentage: p.discountPercentage,
-                }));
+            // Update stats
+            totalProductsEl.textContent = allProducts.length;
+            const categories = [...new Set(allProducts.map(p => p.category))];
+            totalCategoriesEl.textContent = categories.length;
+            const avg = allProducts.reduce((sum, p) => sum + p.rating, 0) / allProducts.length;
+            avgRatingEl.textContent = avg.toFixed(1);
 
-                // Update stats
-                totalProductsEl.textContent = allProducts.length;
-                const categories = [...new Set(allProducts.map(p => p.category))];
-                totalCategoriesEl.textContent = categories.length;
-                const avg = allProducts.reduce((sum, p) => sum + p.rating, 0) / allProducts.length;
-                avgRatingEl.textContent = avg.toFixed(1);
+            // Build category filter buttons dynamically
+            const allBtn = filterBar.querySelector('.filter-btn.active');
+            const sortWrap = filterBar.querySelector('.sort-wrap');
+            filterBar.querySelectorAll('.filter-btn:not(.active)').forEach(b => b.remove());
 
-                // Build category filter buttons dynamically
-                const allBtn = filterBar.querySelector('.filter-btn.active');
-                const sortWrap = filterBar.querySelector('.sort-wrap');
-                // Remove old category buttons (keep "All" and sort)
-                filterBar.querySelectorAll('.filter-btn:not(.active)').forEach(b => b.remove());
-
-                categories.forEach(cat => {
-                    const btn = document.createElement('button');
-                    btn.className = 'filter-btn';
-                    btn.dataset.category = cat;
-                    btn.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-                    filterBar.insertBefore(btn, sortWrap);
-                    btn.addEventListener('click', () => {
-                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        currentCategory = cat;
-                        renderProducts();
-                    });
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.dataset.category = cat;
+                btn.textContent = cat;
+                filterBar.insertBefore(btn, sortWrap);
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentCategory = cat;
+                    renderProducts();
                 });
+            });
 
-                renderProducts();
-                renderCart();
-                updateBadge();
-                updateCheckoutBtn();
-                updateStats();
+            renderProducts();
+            renderCart();
+            updateBadge();
+            updateCheckoutBtn();
+            updateStats();
 
-                console.log(`✅ Loaded ${allProducts.length} real products with images from DummyJSON.`);
-            } catch (err) {
-                console.error('❌ Failed to load products:', err);
-                grid.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h3>Failed to load products</h3>
-                        <p>Please check your internet connection and refresh.</p>
-                    </div>
-                `;
-            }
+            console.log(`🌿 PlantVerse loaded ${allProducts.length} beautiful plants.`);
         }
 
         // ============================================================
@@ -1434,7 +1426,7 @@
         modalConfirm.addEventListener('click', () => {
             closeCheckout();
             if (cart.length > 0) {
-                showToast('🎉 Order placed successfully! Thank you.', 'success');
+                showToast('🎉 Order placed! Your plants are on their way.', 'success');
                 clearCart();
                 updateAddButtons();
                 closeCart();
@@ -1458,13 +1450,13 @@
         // ============================================================
         //  INIT
         // ============================================================
-        fetchProducts();
+        loadPlantData();
         renderCart();
         updateBadge();
         updateCheckoutBtn();
         updateStats();
 
-        console.log('🚀 ShopVerse with REAL products from DummyJSON');
+        console.log('🌱 PlantVerse is ready! Shop your favorite greenery.');
     </script>
 </body>
 </html>
