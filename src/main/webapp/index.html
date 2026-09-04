@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShopVerse — Dynamic Store</title>
 
-    <!-- Font Awesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,6 +36,9 @@
             --transition: 0.25s ease;
             --danger: #ef4444;
             --success: #22c55e;
+        }
+        html {
+            scroll-behavior: smooth;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -193,7 +195,7 @@
             flex: 1;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 32px 24px 60px;
+            padding: 32px 24px 20px;
             width: 100%;
         }
 
@@ -354,8 +356,6 @@
         .filter-bar .sort-wrap select:focus {
             border-color: var(--primary);
         }
-
-        /* Price range slider */
         .price-range {
             display: flex;
             align-items: center;
@@ -405,7 +405,6 @@
                 transform: translateY(0);
             }
         }
-
         .product-image {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -464,7 +463,6 @@
         .wishlist-btn.liked {
             color: var(--danger);
         }
-
         .product-info {
             padding: 18px 20px 20px;
             flex: 1;
@@ -562,7 +560,6 @@
             font-size: 1.3rem;
             margin-bottom: 4px;
         }
-
         .loader {
             display: flex;
             justify-content: center;
@@ -585,8 +582,6 @@
                 transform: rotate(360deg);
             }
         }
-
-        /* Skeleton loading */
         .skeleton-card {
             background: var(--surface);
             border-radius: var(--radius);
@@ -1007,6 +1002,155 @@
             gap: 6px;
         }
 
+        /* ========== ORDER CONFIRMATION BANNER ========== */
+        .order-confirmation {
+            display: none;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 2px solid var(--success);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            margin: 32px 0 20px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        .order-confirmation.show {
+            display: block;
+        }
+        .order-confirmation i {
+            font-size: 3rem;
+            color: var(--success);
+            margin-bottom: 12px;
+        }
+        .order-confirmation h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .order-confirmation p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        .order-confirmation .order-details {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            margin: 16px auto 0;
+            max-width: 400px;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        .order-confirmation .order-details .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+        .order-confirmation .order-details .row.total {
+            font-weight: 700;
+            border-top: 1px solid var(--border);
+            padding-top: 10px;
+            margin-top: 6px;
+        }
+        .order-confirmation .continue-btn {
+            margin-top: 16px;
+            background: var(--success);
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        .order-confirmation .continue-btn:hover {
+            background: #16a34a;
+            transform: scale(1.02);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 40px 24px 24px;
+            margin-top: 20px;
+        }
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+        .footer-inner .brand {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .footer-inner .brand .logo {
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+        .footer-inner .brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+        .footer-col ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+        .footer-col .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .footer-col .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg);
+            color: var(--text-muted);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .footer-col .social-links a:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 24px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
         /* ========== RESPONSIVE ========== */
         @media (max-width: 992px) {
             .product-grid {
@@ -1077,13 +1221,17 @@
                 min-width: 50px;
                 font-size: 0.75rem;
             }
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
         }
         @media (max-width: 480px) {
             header {
                 padding: 12px 16px;
             }
             main {
-                padding: 20px 16px 40px;
+                padding: 20px 16px 10px;
             }
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -1123,6 +1271,16 @@
             }
             .detail-modal .modal-box {
                 padding: 20px 16px;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-col .social-links {
+                justify-content: center;
+            }
+            .order-confirmation {
+                padding: 24px 16px;
             }
         }
     </style>
@@ -1175,7 +1333,6 @@
         <div class="filter-bar" id="filterBar">
             <span class="label"><i class="fas fa-tag"></i> Category:</span>
             <button class="filter-btn active" data-category="all">All</button>
-            <!-- Categories will be added by JavaScript -->
             <div class="sort-wrap">
                 <label for="sortSelect"><i class="fas fa-arrow-up-wide-short"></i></label>
                 <select id="sortSelect">
@@ -1193,15 +1350,26 @@
         </div>
 
         <!-- Product Grid -->
-        <div class="product-grid" id="productGrid">
-            <!-- Skeletons will be shown initially -->
-        </div>
+        <div class="product-grid" id="productGrid"></div>
 
         <!-- Pagination -->
         <div class="pagination" id="pagination">
             <button id="prevPage" disabled><i class="fas fa-chevron-left"></i> Previous</button>
             <span class="page-info" id="pageInfo">Page 1 of 1</span>
             <button id="nextPage">Next <i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <!-- ===== ORDER CONFIRMATION (shown after checkout) ===== -->
+        <div class="order-confirmation" id="orderConfirmation">
+            <i class="fas fa-check-circle"></i>
+            <h2>🎉 Order Confirmed!</h2>
+            <p>Thank you for your purchase. Your order has been placed successfully.</p>
+            <div class="order-details" id="confirmationDetails">
+                <div class="row"><span>Items</span><span id="confirmItems">0</span></div>
+                <div class="row"><span>Shipping</span><span>Free</span></div>
+                <div class="row total"><span>Total</span><span id="confirmTotal">$0.00</span></div>
+            </div>
+            <button class="continue-btn" id="continueShoppingBtn"><i class="fas fa-shopping-bag"></i> Continue Shopping</button>
         </div>
     </main>
 
@@ -1224,26 +1392,55 @@
         <div class="modal-overlay" id="detailOverlay"></div>
         <div class="modal-box">
             <button class="modal-close" id="detailClose"><i class="fas fa-times"></i></button>
-            <div class="detail-content" id="detailContent">
-                <!-- Filled by JS -->
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== CHECKOUT MODAL (simple) ===== -->
-    <div class="checkout-modal" id="checkoutModal">
-        <div class="modal-overlay" id="modalOverlay"></div>
-        <div class="modal-box">
-            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
-            <h2><i class="fas fa-check-circle"></i> Order Confirmed</h2>
-            <p>Thank you for your purchase! Your order has been placed successfully.</p>
-            <div class="order-summary" id="orderSummary"></div>
-            <button class="confirm-btn" id="modalConfirm"><i class="fas fa-thumbs-up"></i> Continue Shopping</button>
+            <div class="detail-content" id="detailContent"></div>
         </div>
     </div>
 
     <!-- ===== TOAST CONTAINER ===== -->
     <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="brand">
+                <a href="#" class="logo"><i class="fas fa-cube"></i> Shop<span>Verse</span></a>
+                <p>Your one‑stop destination for premium products. Quality, style, and value – curated just for you.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#" data-category="electronics">Electronics</a></li>
+                    <li><a href="#" data-category="clothing">Clothing</a></li>
+                    <li><a href="#" data-category="home">Home & Living</a></li>
+                    <li><a href="#" data-category="beauty">Beauty</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p style="margin-top:12px; font-size:0.8rem; color:var(--text-muted);">
+                    <i class="fas fa-envelope"></i> support@shopverse.com
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 ShopVerse. All rights reserved. Made with <i class="fas fa-heart" style="color:var(--danger);"></i>
+        </div>
+    </footer>
 
     <!-- ============================================================ -->
     <!-- JAVASCRIPT – Full dynamic application                        -->
@@ -1277,11 +1474,6 @@
         const cartOverlay = document.getElementById('cartOverlay');
         const cartSidebar = document.getElementById('cartSidebar');
         const checkoutBtn = document.getElementById('checkoutBtn');
-        const checkoutModal = document.getElementById('checkoutModal');
-        const modalOverlay = document.getElementById('modalOverlay');
-        const modalClose = document.getElementById('modalClose');
-        const modalConfirm = document.getElementById('modalConfirm');
-        const orderSummary = document.getElementById('orderSummary');
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         const heroCta = document.getElementById('heroCta');
@@ -1300,6 +1492,10 @@
         const detailClose = document.getElementById('detailClose');
         const detailContent = document.getElementById('detailContent');
         const wishlistToggle = document.getElementById('wishlistToggle');
+        const orderConfirmation = document.getElementById('orderConfirmation');
+        const confirmItems = document.getElementById('confirmItems');
+        const confirmTotal = document.getElementById('confirmTotal');
+        const continueBtn = document.getElementById('continueShoppingBtn');
 
         // ============================================================
         //  TOAST
@@ -1333,7 +1529,7 @@
             localStorage.setItem('shopverse_wishlist', JSON.stringify(wishlist));
             updateBadges();
             updateStats();
-            renderProducts(); // refresh wishlist icons
+            renderProducts();
         }
 
         function updateBadges() {
@@ -1377,6 +1573,8 @@
             }
             saveCart();
             updateAddButtons();
+            // Hide confirmation if visible
+            orderConfirmation.classList.remove('show');
         }
 
         function removeFromCart(productId) {
@@ -1515,11 +1713,11 @@
         // ============================================================
         function getFilteredProducts() {
             let list = [...allProducts];
-
-            if (currentCategory !== 'all') {
+            if (currentCategory === 'wishlist') {
+                list = list.filter(p => wishlist.includes(p.id));
+            } else if (currentCategory !== 'all') {
                 list = list.filter(p => p.category === currentCategory);
             }
-
             if (searchQuery.trim()) {
                 const q = searchQuery.trim().toLowerCase();
                 list = list.filter(p =>
@@ -1527,10 +1725,7 @@
                     p.category.toLowerCase().includes(q)
                 );
             }
-
-            // Price filter
             list = list.filter(p => p.price <= maxPrice);
-
             switch (currentSort) {
                 case 'price-asc':
                     list.sort((a, b) => a.price - b.price);
@@ -1547,7 +1742,6 @@
                 default:
                     break;
             }
-
             return list;
         }
 
@@ -1560,7 +1754,6 @@
             const end = Math.min(start + itemsPerPage, totalItems);
             const pageItems = filtered.slice(start, end);
 
-            // Update pagination UI
             prevPageBtn.disabled = currentPage <= 1;
             nextPageBtn.disabled = currentPage >= totalPages;
             pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
@@ -1609,7 +1802,6 @@
                 `;
             }).join('');
 
-            // Attach event listeners for wishlist and detail click
             grid.querySelectorAll('.wishlist-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -1619,7 +1811,6 @@
             });
             grid.querySelectorAll('.product-card').forEach(card => {
                 card.addEventListener('click', (e) => {
-                    // Ignore if click on button
                     if (e.target.closest('button')) return;
                     const id = parseInt(card.dataset.id);
                     openDetail(id);
@@ -1650,7 +1841,6 @@
                     ${cart.some(item => item.id === product.id) ? '<i class="fas fa-check"></i> In Cart' : '<i class="fas fa-plus"></i> Add to Cart'}
                 </button>
             `;
-            // Attach add to cart for detail button
             detailContent.querySelector('.add-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
                 const id = parseInt(e.target.dataset.id);
@@ -1659,7 +1849,7 @@
                     return;
                 }
                 addToCart(id);
-                openDetail(id); // refresh detail
+                openDetail(id);
             });
             detailModal.classList.add('open');
             document.body.style.overflow = 'hidden';
@@ -1674,10 +1864,33 @@
         detailClose.addEventListener('click', closeDetail);
 
         // ============================================================
+        //  CHECKOUT → Show confirmation in footer area
+        // ============================================================
+        function placeOrder() {
+            if (cart.length === 0) return;
+            const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+            const totalItems = cart.reduce((s, i) => s + i.qty, 0);
+
+            // Show confirmation banner
+            confirmItems.textContent = totalItems;
+            confirmTotal.textContent = `$${total.toFixed(2)}`;
+            orderConfirmation.classList.add('show');
+
+            // Scroll to confirmation
+            orderConfirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Clear cart
+            clearCart();
+            updateAddButtons();
+            closeCart();
+
+            showToast('🎉 Order placed successfully! Thank you.', 'success');
+        }
+
+        // ============================================================
         //  FETCH PRODUCTS
         // ============================================================
         async function fetchProducts() {
-            // Show skeletons
             grid.innerHTML = Array(8).fill(0).map(() => `
                 <div class="skeleton-card">
                     <div class="skeleton-image"></div>
@@ -1706,21 +1919,18 @@
                     description: p.description,
                 }));
 
-                // Update stats
                 totalProductsEl.textContent = allProducts.length;
                 const categories = [...new Set(allProducts.map(p => p.category))];
                 totalCategoriesEl.textContent = categories.length;
                 const avg = allProducts.reduce((sum, p) => sum + p.rating, 0) / allProducts.length;
                 avgRatingEl.textContent = avg.toFixed(1);
 
-                // Max price for slider
                 const maxPriceVal = Math.max(...allProducts.map(p => p.price));
                 priceRange.max = Math.ceil(maxPriceVal / 100) * 100;
                 priceRange.value = priceRange.max;
                 maxPrice = parseFloat(priceRange.value);
                 priceLabel.textContent = `$0 – $${maxPrice}`;
 
-                // Build category buttons
                 const allBtn = filterBar.querySelector('.filter-btn.active');
                 const sortWrap = filterBar.querySelector('.sort-wrap');
                 filterBar.querySelectorAll('.filter-btn:not(.active)').forEach(b => b.remove());
@@ -1736,7 +1946,27 @@
                         btn.classList.add('active');
                         currentCategory = cat;
                         currentPage = 1;
+                        orderConfirmation.classList.remove('show');
                         renderProducts();
+                    });
+                });
+
+                // Footer category links
+                document.querySelectorAll('.footer-col a[data-category]').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const cat = link.dataset.category;
+                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                        const targetBtn = document.querySelector(`.filter-btn[data-category="${cat}"]`);
+                        if (targetBtn) {
+                            targetBtn.classList.add('active');
+                            currentCategory = cat;
+                            currentPage = 1;
+                            orderConfirmation.classList.remove('show');
+                            renderProducts();
+                            document.querySelector('.filter-bar').scrollIntoView({ behavior: 'smooth',
+                                block: 'start' });
+                        }
                     });
                 });
 
@@ -1760,11 +1990,12 @@
         }
 
         // ============================================================
-        //  FILTER / SORT / SEARCH / PRICE events
+        //  EVENTS
         // ============================================================
         sortSelect.addEventListener('change', (e) => {
             currentSort = e.target.value;
             currentPage = 1;
+            orderConfirmation.classList.remove('show');
             renderProducts();
         });
 
@@ -1772,12 +2003,14 @@
             maxPrice = parseFloat(e.target.value);
             priceLabel.textContent = `$0 – $${maxPrice}`;
             currentPage = 1;
+            orderConfirmation.classList.remove('show');
             renderProducts();
         });
 
         function performSearch() {
             searchQuery = searchInput.value;
             currentPage = 1;
+            orderConfirmation.classList.remove('show');
             renderProducts();
         }
 
@@ -1790,7 +2023,6 @@
             document.querySelector('.filter-bar').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
-        // Pagination
         prevPageBtn.addEventListener('click', () => {
             if (currentPage > 1) { currentPage--;
                 renderProducts(); }
@@ -1800,6 +2032,15 @@
             const totalPages = Math.ceil(filtered.length / itemsPerPage);
             if (currentPage < totalPages) { currentPage++;
                 renderProducts(); }
+        });
+
+        // Checkout → place order (shows confirmation in footer)
+        checkoutBtn.addEventListener('click', placeOrder);
+
+        // Continue shopping → hide confirmation
+        continueBtn.addEventListener('click', () => {
+            orderConfirmation.classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // ============================================================
@@ -1826,49 +2067,24 @@
             if (e.key === 'Escape') {
                 closeCart();
                 closeDetail();
-                closeCheckout();
             }
         });
 
         // ============================================================
-        //  CHECKOUT
+        //  WISHLIST TOGGLE
         // ============================================================
-        function openCheckout() {
-            if (cart.length === 0) return;
-            const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-            const totalItems = cart.reduce((s, i) => s + i.qty, 0);
-            const itemsList = cart.map(item =>
-                `${item.name} × ${item.qty} — $${(item.price * item.qty).toFixed(2)}`
-            ).join('<br/>');
-
-            orderSummary.innerHTML = `
-                <div class="row"><span>Items (${totalItems})</span><span>$${total.toFixed(2)}</span></div>
-                <div class="row"><span>Shipping</span><span>Free</span></div>
-                <div class="row total"><span>Total</span><span>$${total.toFixed(2)}</span></div>
-                <div class="items-list">${itemsList}</div>
-            `;
-
-            checkoutModal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCheckout() {
-            checkoutModal.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        checkoutBtn.addEventListener('click', openCheckout);
-        modalOverlay.addEventListener('click', closeCheckout);
-        modalClose.addEventListener('click', closeCheckout);
-
-        modalConfirm.addEventListener('click', () => {
-            closeCheckout();
-            if (cart.length > 0) {
-                showToast('🎉 Order placed successfully! Thank you.', 'success');
-                clearCart();
-                updateAddButtons();
-                closeCart();
+        wishlistToggle.addEventListener('click', () => {
+            if (currentCategory === 'wishlist') {
+                currentCategory = 'all';
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelector('.filter-btn[data-category="all"]')?.classList.add('active');
+            } else {
+                currentCategory = 'wishlist';
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             }
+            currentPage = 1;
+            orderConfirmation.classList.remove('show');
+            renderProducts();
         });
 
         // ============================================================
@@ -1886,58 +2102,6 @@
             renderProducts();
         });
 
-        // Wishlist toggle from header
-        wishlistToggle.addEventListener('click', () => {
-            // Show only wishlisted products? Simple: filter by wishlist
-            if (currentCategory === 'wishlist') {
-                currentCategory = 'all';
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                document.querySelector('.filter-btn[data-category="all"]').classList.add('active');
-            } else {
-                currentCategory = 'wishlist';
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                // highlight "All" and we'll handle filtering separately
-            }
-            currentPage = 1;
-            renderProducts();
-        });
-
-        // Override getFilteredProducts to support wishlist view
-        const originalGetFiltered = getFilteredProducts;
-        getFilteredProducts = function() {
-            let list = [...allProducts];
-            if (currentCategory === 'wishlist') {
-                list = list.filter(p => wishlist.includes(p.id));
-            } else if (currentCategory !== 'all') {
-                list = list.filter(p => p.category === currentCategory);
-            }
-            if (searchQuery.trim()) {
-                const q = searchQuery.trim().toLowerCase();
-                list = list.filter(p =>
-                    p.title.toLowerCase().includes(q) ||
-                    p.category.toLowerCase().includes(q)
-                );
-            }
-            list = list.filter(p => p.price <= maxPrice);
-            switch (currentSort) {
-                case 'price-asc':
-                    list.sort((a, b) => a.price - b.price);
-                    break;
-                case 'price-desc':
-                    list.sort((a, b) => b.price - a.price);
-                    break;
-                case 'name':
-                    list.sort((a, b) => a.title.localeCompare(b.title));
-                    break;
-                case 'rating':
-                    list.sort((a, b) => b.rating - a.rating);
-                    break;
-                default:
-                    break;
-            }
-            return list;
-        };
-
         // ============================================================
         //  INIT
         // ============================================================
@@ -1947,7 +2111,7 @@
         updateCheckoutBtn();
         updateStats();
 
-        console.log('🚀 ShopVerse Dynamic App with wishlist, detail, pagination, price filter.');
+        console.log('🚀 ShopVerse Dynamic App with footer & inline order confirmation.');
     </script>
 </body>
 </html>
