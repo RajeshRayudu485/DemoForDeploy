@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PlantVerse — Your Green Store</title>
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -44,7 +42,6 @@
         ::-webkit-scrollbar-track { background:var(--bg); }
         ::-webkit-scrollbar-thumb { background:var(--primary); border-radius:10px; }
 
-        /* HEADER */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
@@ -169,7 +166,6 @@
             color: var(--primary);
         }
 
-        /* MAIN */
         main {
             flex: 1;
             max-width: 1280px;
@@ -178,7 +174,6 @@
             width: 100%;
         }
 
-        /* HERO */
         .hero {
             background: linear-gradient(135deg, var(--primary-light), #f4faf2);
             border-radius: var(--radius);
@@ -234,7 +229,6 @@
             z-index: 1;
         }
 
-        /* STATS BAR */
         .stats-bar {
             display: flex;
             flex-wrap: wrap;
@@ -261,7 +255,6 @@
         .stats-bar .stat-item strong { font-weight: 700; color: var(--text); }
         .stats-bar .stat-item .stat-value { color: var(--text-muted); }
 
-        /* FILTER BAR */
         .filter-bar {
             display: flex;
             flex-wrap: wrap;
@@ -327,7 +320,6 @@
             border-color: var(--primary);
         }
 
-        /* PRODUCT GRID */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -485,7 +477,6 @@
             margin-bottom: 4px;
         }
 
-        /* CART SIDEBAR */
         .cart-overlay {
             position: fixed;
             inset: 0;
@@ -691,7 +682,6 @@
             transform: none;
         }
 
-        /* TOAST */
         .toast-container {
             position: fixed;
             bottom: 24px;
@@ -725,7 +715,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* CHECKOUT MODAL */
         .checkout-modal {
             position: fixed;
             inset: 0;
@@ -843,7 +832,6 @@
             transform: scale(1.01);
         }
 
-        /* LOADING */
         .loader {
             display: flex;
             justify-content: center;
@@ -863,7 +851,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* RESPONSIVE */
         @media (max-width: 992px) {
             .product-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
         }
@@ -903,7 +890,6 @@
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
     <header>
         <div class="header-inner">
             <a href="#" class="logo"><i class="fas fa-seedling"></i> Plant<span>Verse</span></a>
@@ -920,19 +906,16 @@
         </div>
     </header>
 
-    <!-- ===== MAIN ===== -->
     <main>
-        <!-- Hero -->
         <section class="hero">
             <div class="hero-text">
                 <h1>Bring <span>Nature</span> Indoors</h1>
-                <p>Handpicked houseplants, pots, and accessories – delivered to your doorstep.</p>
+                <p>Handpicked houseplants – delivered to your doorstep.</p>
                 <button class="hero-cta" id="heroCta"><i class="fas fa-leaf"></i> Start Shopping</button>
             </div>
             <div class="hero-icon"><i class="fas fa-tree"></i></div>
         </section>
 
-        <!-- Stats Bar -->
         <div class="stats-bar">
             <div class="stat-item"><i class="fas fa-box"></i> <span><strong id="totalProducts">0</strong> <span class="stat-value">Plants</span></span></div>
             <div class="stat-item"><i class="fas fa-tags"></i> <span><strong id="totalCategories">0</strong> <span class="stat-value">Categories</span></span></div>
@@ -940,11 +923,9 @@
             <div class="stat-item"><i class="fas fa-shopping-cart"></i> <span><strong id="cartItemCount">0</strong> <span class="stat-value">In Cart</span></span></div>
         </div>
 
-        <!-- Filter Bar -->
         <div class="filter-bar" id="filterBar">
             <span class="label"><i class="fas fa-tag"></i> Category:</span>
             <button class="filter-btn active" data-category="all">All</button>
-            <!-- Categories will be added by JavaScript -->
             <div class="sort-wrap">
                 <label for="sortSelect"><i class="fas fa-arrow-up-wide-short"></i></label>
                 <select id="sortSelect">
@@ -956,13 +937,11 @@
             </div>
         </div>
 
-        <!-- Product Grid -->
         <div class="product-grid" id="productGrid">
             <div class="loader"><i class="fas fa-spinner"></i> Loading plants...</div>
         </div>
     </main>
 
-    <!-- ===== CART SIDEBAR ===== -->
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
@@ -976,162 +955,158 @@
         </div>
     </div>
 
-    <!-- ===== CHECKOUT MODAL ===== -->
     <div class="checkout-modal" id="checkoutModal">
         <div class="modal-overlay" id="modalOverlay"></div>
         <div class="modal-box">
             <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
             <h2><i class="fas fa-check-circle"></i> Order Confirmed</h2>
-            <p>Thank you for your purchase! Your leafy friends are on their way.</p>
+            <p>Thank you! Your leafy friends are on their way.</p>
             <div class="order-summary" id="orderSummary"></div>
             <button class="confirm-btn" id="modalConfirm"><i class="fas fa-thumbs-up"></i> Continue Shopping</button>
         </div>
     </div>
 
-    <!-- ===== TOAST CONTAINER ===== -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- ============================================================ -->
-    <!-- JAVASCRIPT – Plant Catalog with REAL matching images         -->
-    <!-- ============================================================ -->
     <script>
         // ============================================================
-        //  PLANT DATA (with matching images from Unsplash)
+        //  PLANT DATA – REAL IMAGES (verified & matching)
         // ============================================================
         const PLANT_PRODUCTS = [
-    { 
-        id: 1, 
-        title: 'Monstera Deliciosa', 
-        category: 'Foliage', 
-        price: 45, 
-        oldPrice: 60, 
-        rating: 4.9, 
-        reviews: 120, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Monstera', 
-        discountPercentage: 25 
-    },
-    { 
-        id: 2, 
-        title: 'Fiddle Leaf Fig', 
-        category: 'Statement', 
-        price: 75, 
-        oldPrice: 95, 
-        rating: 4.8, 
-        reviews: 85, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Fiddle+Fig', 
-        discountPercentage: 21 
-    },
-    { 
-        id: 3, 
-        title: 'Snake Plant Laurentii', 
-        category: 'Air Purifier', 
-        price: 30, 
-        oldPrice: 40, 
-        rating: 5.0, 
-        reviews: 210, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Snake+Plant', 
-        discountPercentage: 25 
-    },
-    { 
-        id: 4, 
-        title: 'Golden Pothos', 
-        category: 'Trailing', 
-        price: 25, 
-        oldPrice: 32, 
-        rating: 4.7, 
-        reviews: 95, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Golden+Pothos', 
-        discountPercentage: 22 
-    },
-    { 
-        id: 5, 
-        title: 'Echeveria Succulent', 
-        category: 'Succulents', 
-        price: 12, 
-        oldPrice: 16, 
-        rating: 4.9, 
-        reviews: 70, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Echeveria', 
-        discountPercentage: 25 
-    },
-    { 
-        id: 6, 
-        title: 'Calathea Orbifolia', 
-        category: 'Pets-safe', 
-        price: 40, 
-        oldPrice: 52, 
-        rating: 4.6, 
-        reviews: 60, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Calathea', 
-        discountPercentage: 23 
-    },
-    { 
-        id: 7, 
-        title: 'ZZ Plant', 
-        category: 'Low Light', 
-        price: 35, 
-        oldPrice: 45, 
-        rating: 4.8, 
-        reviews: 145, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=ZZ+Plant', 
-        discountPercentage: 22 
-    },
-    { 
-        id: 8, 
-        title: 'String of Pearls', 
-        category: 'Trailing', 
-        price: 28, 
-        oldPrice: 36, 
-        rating: 4.7, 
-        reviews: 80, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=String+of+Pearls', 
-        discountPercentage: 22 
-    },
-    { 
-        id: 9, 
-        title: 'Aloe Vera', 
-        category: 'Succulents', 
-        price: 18, 
-        oldPrice: 24, 
-        rating: 4.9, 
-        reviews: 190, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Aloe+Vera', 
-        discountPercentage: 25 
-    },
-    { 
-        id: 10, 
-        title: 'Rubber Tree', 
-        category: 'Foliage', 
-        price: 55, 
-        oldPrice: 70, 
-        rating: 4.5, 
-        reviews: 50, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Rubber+Tree', 
-        discountPercentage: 21 
-    },
-    { 
-        id: 11, 
-        title: 'Peace Lily', 
-        category: 'Air Purifier', 
-        price: 32, 
-        oldPrice: 42, 
-        rating: 4.8, 
-        reviews: 110, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Peace+Lily', 
-        discountPercentage: 24 
-    },
-    { 
-        id: 12, 
-        title: 'Jade Plant', 
-        category: 'Succulents', 
-        price: 22, 
-        oldPrice: 28, 
-        rating: 4.6, 
-        reviews: 65, 
-        thumbnail: 'https://placehold.co/300x300/2d6a4f/white?text=Jade+Plant', 
-        discountPercentage: 21 
-    }
-];
+            { 
+                id: 1, 
+                title: 'Monstera Deliciosa', 
+                category: 'Foliage', 
+                price: 45, 
+                oldPrice: 60, 
+                rating: 4.9, 
+                reviews: 120, 
+                thumbnail: 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 25 
+            },
+            { 
+                id: 2, 
+                title: 'Fiddle Leaf Fig', 
+                category: 'Statement', 
+                price: 75, 
+                oldPrice: 95, 
+                rating: 4.8, 
+                reviews: 85, 
+                thumbnail: 'https://images.unsplash.com/photo-1564419320461-6870880221ad?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 21 
+            },
+            { 
+                id: 3, 
+                title: 'Snake Plant Laurentii', 
+                category: 'Air Purifier', 
+                price: 30, 
+                oldPrice: 40, 
+                rating: 5.0, 
+                reviews: 210, 
+                thumbnail: 'https://images.unsplash.com/photo-1593482892290-f54927f6a0a9?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 25 
+            },
+            { 
+                id: 4, 
+                title: 'Golden Pothos', 
+                category: 'Trailing', 
+                price: 25, 
+                oldPrice: 32, 
+                rating: 4.7, 
+                reviews: 95, 
+                thumbnail: 'https://images.unsplash.com/photo-1604762524889-3e2fcc145683?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 22 
+            },
+            { 
+                id: 5, 
+                title: 'Echeveria Succulent', 
+                category: 'Succulents', 
+                price: 12, 
+                oldPrice: 16, 
+                rating: 4.9, 
+                reviews: 70, 
+                thumbnail: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 25 
+            },
+            { 
+                id: 6, 
+                title: 'Calathea Orbifolia', 
+                category: 'Pets-safe', 
+                price: 40, 
+                oldPrice: 52, 
+                rating: 4.6, 
+                reviews: 60, 
+                thumbnail: 'https://images.unsplash.com/photo-1572688484438-313a6e50c333?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 23 
+            },
+            { 
+                id: 7, 
+                title: 'ZZ Plant', 
+                category: 'Low Light', 
+                price: 35, 
+                oldPrice: 45, 
+                rating: 4.8, 
+                reviews: 145, 
+                thumbnail: 'https://images.unsplash.com/photo-1630852056460-0b2acb616198?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 22 
+            },
+            { 
+                id: 8, 
+                title: 'String of Pearls', 
+                category: 'Trailing', 
+                price: 28, 
+                oldPrice: 36, 
+                rating: 4.7, 
+                reviews: 80, 
+                thumbnail: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 22 
+            },
+            { 
+                id: 9, 
+                title: 'Aloe Vera', 
+                category: 'Succulents', 
+                price: 18, 
+                oldPrice: 24, 
+                rating: 4.9, 
+                reviews: 190, 
+                thumbnail: 'https://images.unsplash.com/photo-1595489765234-4c7252823225?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 25 
+            },
+            { 
+                id: 10, 
+                title: 'Rubber Tree', 
+                category: 'Foliage', 
+                price: 55, 
+                oldPrice: 70, 
+                rating: 4.5, 
+                reviews: 50, 
+                thumbnail: 'https://images.unsplash.com/photo-1596079890744-c1a0462d0974?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 21 
+            },
+            { 
+                id: 11, 
+                title: 'Peace Lily', 
+                category: 'Air Purifier', 
+                price: 32, 
+                oldPrice: 42, 
+                rating: 4.8, 
+                reviews: 110, 
+                thumbnail: 'https://images.unsplash.com/photo-1593697821252-0c9137d9fc45?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 24 
+            },
+            { 
+                id: 12, 
+                title: 'Jade Plant', 
+                category: 'Succulents', 
+                price: 22, 
+                oldPrice: 28, 
+                rating: 4.6, 
+                reviews: 65, 
+                thumbnail: 'https://images.unsplash.com/photo-1558707804-b2e4b6d16cc6?w=300&h=300&fit=crop&crop=center', 
+                discountPercentage: 21 
+            }
+        ];
+
         // ============================================================
         //  STATE
         // ============================================================
@@ -1141,9 +1116,6 @@
         let currentSort = 'default';
         let searchQuery = '';
 
-        // ============================================================
-        //  DOM REFS
-        // ============================================================
         const grid = document.getElementById('productGrid');
         const cartItemsEl = document.getElementById('cartItems');
         const cartTotalEl = document.getElementById('cartTotal');
@@ -1168,9 +1140,6 @@
         const totalCategoriesEl = document.getElementById('totalCategories');
         const avgRatingEl = document.getElementById('avgRating');
 
-        // ============================================================
-        //  TOAST
-        // ============================================================
         function showToast(message, type = 'success') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -1185,9 +1154,6 @@
             }, 2800);
         }
 
-        // ============================================================
-        //  CART HELPERS
-        // ============================================================
         function saveCart() {
             localStorage.setItem('plantverse_cart', JSON.stringify(cart));
             renderCart();
@@ -1274,9 +1240,6 @@
             });
         }
 
-        // ============================================================
-        //  RENDER: CART
-        // ============================================================
         function renderCart() {
             if (cart.length === 0) {
                 cartItemsEl.innerHTML = `
@@ -1344,16 +1307,11 @@
             updateStats();
         }
 
-        // ============================================================
-        //  RENDER: PRODUCTS
-        // ============================================================
         function getFilteredProducts() {
             let list = [...allProducts];
-
             if (currentCategory !== 'all') {
                 list = list.filter(p => p.category === currentCategory);
             }
-
             if (searchQuery.trim()) {
                 const q = searchQuery.trim().toLowerCase();
                 list = list.filter(p =>
@@ -1361,26 +1319,17 @@
                     p.category.toLowerCase().includes(q)
                 );
             }
-
             switch (currentSort) {
-                case 'price-asc':
-                    list.sort((a, b) => a.price - b.price);
-                    break;
-                case 'price-desc':
-                    list.sort((a, b) => b.price - a.price);
-                    break;
-                case 'name':
-                    list.sort((a, b) => a.title.localeCompare(b.title));
-                    break;
-                default:
-                    break;
+                case 'price-asc': list.sort((a, b) => a.price - b.price); break;
+                case 'price-desc': list.sort((a, b) => b.price - a.price); break;
+                case 'name': list.sort((a, b) => a.title.localeCompare(b.title)); break;
+                default: break;
             }
             return list;
         }
 
         function renderProducts() {
             const list = getFilteredProducts();
-
             if (list.length === 0) {
                 grid.innerHTML = `
                     <div class="empty-state">
@@ -1405,10 +1354,7 @@
                         <div class="product-info">
                             <div class="category">${p.category}</div>
                             <div class="name">${p.title}</div>
-                            <div class="rating">
-                                ${stars}
-                                <span>(${p.reviews || 0})</span>
-                            </div>
+                            <div class="rating">${stars} <span>(${p.reviews || 0})</span></div>
                             <div class="price-row">
                                 <span class="price">$${p.price.toFixed(2)}</span>
                                 ${p.oldPrice ? `<span class="price-old">$${p.oldPrice.toFixed(2)}</span>` : ''}
@@ -1420,27 +1366,19 @@
                     </div>
                 `;
             }).join('');
-
             updateAddButtons();
         }
 
-        // ============================================================
-        //  LOAD PLANT DATA
-        // ============================================================
         function loadPlantData() {
             allProducts = PLANT_PRODUCTS;
-
-            // Update stats
             totalProductsEl.textContent = allProducts.length;
             const categories = [...new Set(allProducts.map(p => p.category))];
             totalCategoriesEl.textContent = categories.length;
             const avg = allProducts.reduce((sum, p) => sum + p.rating, 0) / allProducts.length;
             avgRatingEl.textContent = avg.toFixed(1);
 
-            // Build category filter buttons dynamically
             const sortWrap = filterBar.querySelector('.sort-wrap');
             filterBar.querySelectorAll('.filter-btn:not(.active)').forEach(b => b.remove());
-
             categories.forEach(cat => {
                 const btn = document.createElement('button');
                 btn.className = 'filter-btn';
@@ -1454,19 +1392,14 @@
                     renderProducts();
                 });
             });
-
             renderProducts();
             renderCart();
             updateBadge();
             updateCheckoutBtn();
             updateStats();
-
-            console.log(`🌿 PlantVerse loaded ${allProducts.length} plants with real matching images.`);
+            console.log(`🌿 Loaded ${allProducts.length} plants with real images.`);
         }
 
-        // ============================================================
-        //  FILTER / SORT / SEARCH EVENTS
-        // ============================================================
         sortSelect.addEventListener('change', (e) => {
             currentSort = e.target.value;
             renderProducts();
@@ -1476,7 +1409,6 @@
             searchQuery = searchInput.value;
             renderProducts();
         }
-
         searchBtn.addEventListener('click', performSearch);
         searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') performSearch();
@@ -1486,16 +1418,12 @@
             document.querySelector('.filter-bar').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
-        // ============================================================
-        //  CART SIDEBAR
-        // ============================================================
         function openCart() {
             cartSidebar.classList.add('open');
             cartOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
             renderCart();
         }
-
         function closeCart() {
             cartSidebar.classList.remove('open');
             cartOverlay.classList.remove('open');
@@ -1505,14 +1433,10 @@
         cartToggle.addEventListener('click', openCart);
         cartClose.addEventListener('click', closeCart);
         cartOverlay.addEventListener('click', closeCart);
-
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') { closeCart(); closeCheckout(); }
         });
 
-        // ============================================================
-        //  CHECKOUT
-        // ============================================================
         function openCheckout() {
             if (cart.length === 0) return;
             const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
@@ -1520,18 +1444,15 @@
             const itemsList = cart.map(item =>
                 `${item.name} × ${item.qty} — $${(item.price * item.qty).toFixed(2)}`
             ).join('<br/>');
-
             orderSummary.innerHTML = `
                 <div class="row"><span>Items (${totalItems})</span><span>$${total.toFixed(2)}</span></div>
                 <div class="row"><span>Shipping</span><span>Free</span></div>
                 <div class="row total"><span>Total</span><span>$${total.toFixed(2)}</span></div>
                 <div class="items-list">${itemsList}</div>
             `;
-
             checkoutModal.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
-
         function closeCheckout() {
             checkoutModal.classList.remove('open');
             document.body.style.overflow = '';
@@ -1551,9 +1472,6 @@
             }
         });
 
-        // ============================================================
-        //  ADD BUTTONS (delegated)
-        // ============================================================
         document.addEventListener('click', (e) => {
             const btn = e.target.closest('.add-btn');
             if (!btn) return;
@@ -1565,16 +1483,13 @@
             addToCart(id);
         });
 
-        // ============================================================
-        //  INIT
-        // ============================================================
         loadPlantData();
         renderCart();
         updateBadge();
         updateCheckoutBtn();
         updateStats();
 
-        console.log('🌱 PlantVerse is ready with accurate plant images!');
+        console.log('🌱 PlantVerse ready with real plant images!');
     </script>
 </body>
 </html>
